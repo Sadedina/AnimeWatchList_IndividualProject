@@ -4,13 +4,13 @@
 
 ##### Kanban Board at the start
 
-![Start Sprint Kanban Board](Images\Sprint morning 03-08.JPG)
+![Start Sprint Kanban Board](..Images\Sprint morning 03-08.JPG)
 
 
 
 ##### Kanban Board at the end
 
-![End Sprint Kanban Board](Images\Sprint evening 03-08.JPG)
+![End Sprint Kanban Board](..Images\Sprint evening 03-08.JPG)
 
 
 
