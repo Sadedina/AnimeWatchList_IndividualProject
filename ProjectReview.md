@@ -4,7 +4,7 @@
 
 ##### Kanban Board at the start
 
-![Start Sprint Kanban Board](https://github.com/Sadedina/AnimeWatchList_IndividualProject/tree/main/Images/Sprint morning 03-08.JPG)
+![Start Sprint Kanban Board](https://github.com/Sadedina/AnimeWatchList_IndividualProject/blob/main/Images/Sprint%20evening%2003-08.JPG)
 
 
 
