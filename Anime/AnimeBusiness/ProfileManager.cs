@@ -49,9 +49,6 @@ namespace AnimeBusiness
             using (var db = new WatchListContext())
             {
                 var profileID = db.Profiles.Where(c => c.Username == username).FirstOrDefault();
-                /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                //var CUSTOMER = from p in db.Profiles where p.Username == username select new { p.PersonId };
-                //var profileID = db.Profiles.Where(c => c.Username == username).Select(c => new { c.PersonId}).FirstOrDefault();
 
                 if (profileID == null)
                 {
