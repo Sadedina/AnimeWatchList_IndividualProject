@@ -44,15 +44,15 @@ namespace AnimeBusiness
             }
         }
 
-        public bool Update(string username, string firstName, string lastName, int age, string country)
+        public bool Update(string oldUsername, string username, string firstName, string lastName, int age, string country)
         {
             using (var db = new WatchListContext())
             {
-                var profileID = db.Profiles.Where(c => c.Username == username).FirstOrDefault();
+                var profileID = db.Profiles.Where(c => c.Username == oldUsername).FirstOrDefault();
 
                 if (profileID == null)
                 {
-                    Debug.WriteLine($"Username {username} not found");
+                    Debug.WriteLine($"Username {oldUsername} not found");
                     return false;
                 }
                 profileID.Username = username;
