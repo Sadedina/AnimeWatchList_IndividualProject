@@ -40,7 +40,7 @@ namespace AnimeData.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK__Profiles__AA2FFB855DD7F05B", x => x.PersonID);
+                    table.PrimaryKey("PK__Profiles__AA2FFB85C413CEC4", x => x.PersonID);
                 });
 
             migrationBuilder.CreateTable(

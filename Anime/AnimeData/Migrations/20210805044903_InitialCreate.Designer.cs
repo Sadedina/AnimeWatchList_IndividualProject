@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AnimeData.Migrations
 {
     [DbContext(typeof(WatchListContext))]
-    [Migration("20210804053303_InitialCreate")]
+    [Migration("20210805044903_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -123,7 +123,7 @@ namespace AnimeData.Migrations
                         .HasColumnName("username");
 
                     b.HasKey("PersonId")
-                        .HasName("PK__Profiles__AA2FFB855DD7F05B");
+                        .HasName("PK__Profiles__AA2FFB85C413CEC4");
 
                     b.ToTable("Profiles");
                 });

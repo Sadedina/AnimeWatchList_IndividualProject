@@ -121,7 +121,7 @@ namespace AnimeData.Migrations
                         .HasColumnName("username");
 
                     b.HasKey("PersonId")
-                        .HasName("PK__Profiles__AA2FFB855DD7F05B");
+                        .HasName("PK__Profiles__AA2FFB85C413CEC4");
 
                     b.ToTable("Profiles");
                 });

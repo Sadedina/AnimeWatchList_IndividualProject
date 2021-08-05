@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace AnimeTests
 {
-    public class Tests
+    public class ProfileTests
     {
         [SetUp]
         public void Setup()
@@ -100,7 +100,7 @@ namespace AnimeTests
                 profileManager.Delete("manda89");
 
                 var numberOfProfilesAfter = db.Profiles.ToList().Count();
-                Assert.That(numberOfProfilesBefore, Is.EqualTo(numberOfProfilesAfter +1));
+                Assert.That(numberOfProfilesBefore, Is.EqualTo(numberOfProfilesAfter + 1));
             }
         }
 
@@ -118,6 +118,21 @@ namespace AnimeTests
                 int profileCheck = (int)(db.Profiles.Where(c => c.Username == "manda89").Count());
 
                 Assert.That(profileCheck, Is.EqualTo(0));
+            }
+        }
+        [OneTimeTearDown]
+        public void OneTimeTearDown()
+        {
+            // remove test entry in DB if present
+            using (var db = new WatchListContext())
+            {
+                var selectedProfiles =
+                from c in db.Profiles
+                where c.Username == "manda89" || c.PersonId == "MANDA"
+                select c;
+
+                db.Profiles.RemoveRange(selectedProfiles);
+                db.SaveChanges();
             }
         }
     }
