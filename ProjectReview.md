@@ -65,11 +65,11 @@ I know what will help me achieve my goal set for each sprint is to have more com
 
 ##### Kanban Board at the start
 
-![Start Sprint Kanban Board](https://github.com/Sadedina/AnimeWatchList_IndividualProject/blob/main/Images/Sprint%20morning%2003-08.JPG)
+![Start Sprint Kanban Board](https://github.com/Sadedina/AnimeWatchList_IndividualProject/blob/main/Images/Sprint%20morning%2004-08.JPG)
 
 ##### Kanban Board at the end
 
-![End Sprint Kanban Board](https://github.com/Sadedina/AnimeWatchList_IndividualProject/blob/main/Images/Sprint%20evening%2003-08.JPG)
+![End Sprint Kanban Board](https://github.com/Sadedina/AnimeWatchList_IndividualProject/blob/main/Images/Sprint%20evening%2004-08.JPG)
 
 ##### Sprint Review
 
