@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31424.327
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimeData", "AnimeData\AnimeData.csproj", "{E9505CBB-A30D-45C0-A2D3-5C67730BED2F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimeData", "AnimeData\AnimeData.csproj", "{264A238D-B6C6-4528-A344-E92D9C353770}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimeBusiness", "AnimeBusiness\AnimeBusiness.csproj", "{C8ED3A08-ED7A-48DD-A296-FF03F7907386}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimeBusiness", "AnimeBusiness\AnimeBusiness.csproj", "{BC674FB5-6CAA-40D9-855B-FE583FC247B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimeTests", "AnimeTests\AnimeTests.csproj", "{8378D38A-DAA6-45B7-84AC-6B59722F2B68}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimeTests", "AnimeTests\AnimeTests.csproj", "{7FCD957D-B957-44B0-87CC-A012A12DDB5A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimeWPF", "AnimeWPF\AnimeWPF.csproj", "{8FF06EF4-689C-45D2-98E8-511EAC08E019}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,23 +17,27 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E9505CBB-A30D-45C0-A2D3-5C67730BED2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E9505CBB-A30D-45C0-A2D3-5C67730BED2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E9505CBB-A30D-45C0-A2D3-5C67730BED2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E9505CBB-A30D-45C0-A2D3-5C67730BED2F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C8ED3A08-ED7A-48DD-A296-FF03F7907386}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C8ED3A08-ED7A-48DD-A296-FF03F7907386}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C8ED3A08-ED7A-48DD-A296-FF03F7907386}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C8ED3A08-ED7A-48DD-A296-FF03F7907386}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8378D38A-DAA6-45B7-84AC-6B59722F2B68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8378D38A-DAA6-45B7-84AC-6B59722F2B68}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8378D38A-DAA6-45B7-84AC-6B59722F2B68}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8378D38A-DAA6-45B7-84AC-6B59722F2B68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{264A238D-B6C6-4528-A344-E92D9C353770}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{264A238D-B6C6-4528-A344-E92D9C353770}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{264A238D-B6C6-4528-A344-E92D9C353770}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{264A238D-B6C6-4528-A344-E92D9C353770}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC674FB5-6CAA-40D9-855B-FE583FC247B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC674FB5-6CAA-40D9-855B-FE583FC247B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC674FB5-6CAA-40D9-855B-FE583FC247B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC674FB5-6CAA-40D9-855B-FE583FC247B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FCD957D-B957-44B0-87CC-A012A12DDB5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FCD957D-B957-44B0-87CC-A012A12DDB5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FCD957D-B957-44B0-87CC-A012A12DDB5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FCD957D-B957-44B0-87CC-A012A12DDB5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FF06EF4-689C-45D2-98E8-511EAC08E019}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FF06EF4-689C-45D2-98E8-511EAC08E019}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FF06EF4-689C-45D2-98E8-511EAC08E019}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FF06EF4-689C-45D2-98E8-511EAC08E019}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {EA19898F-3163-4980-8CE5-D6D4866843CB}
+		SolutionGuid = {0785AB14-752F-48F7-9A11-9455CCC15337}
 	EndGlobalSection
 EndGlobal

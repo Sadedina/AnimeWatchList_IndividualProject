@@ -82,7 +82,7 @@ namespace AnimeData
             modelBuilder.Entity<Profile>(entity =>
             {
                 entity.HasKey(e => e.PersonId)
-                    .HasName("PK__Profiles__AA2FFB855DD7F05B");
+                    .HasName("PK__Profiles__AA2FFB85C413CEC4");
 
                 entity.Property(e => e.PersonId)
                     .HasMaxLength(255)

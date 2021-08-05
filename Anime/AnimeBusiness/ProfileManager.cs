@@ -27,20 +27,31 @@ namespace AnimeBusiness
 
         public void Create(string username, string firstName, string lastName, int age, string country)
         {
+            // Making unique personal Id for User that is unchangable, even when username is changed
+            string personalId = $"{username.ToLower().Substring(0, 3)}{firstName.ToUpper().Substring(0, 3)}{lastName.ToUpper().Substring(0, 3)}";
+            
             var newProf = new Profile()
             {
-                PersonId = $"{username.ToLower().Substring(0,3)}{firstName.ToUpper().Substring(0,3)}{lastName.ToUpper().Substring(0,3)}"
-                ,Username = username
-                ,FirstName = firstName
-                ,LastName = lastName
-                ,Age = age
-                ,Country = country
+                PersonId = personalId
+                , Username = username
+                , FirstName = firstName
+                , LastName = lastName
+                , Age = age
+                , Country = country
             };
 
             using (var db = new WatchListContext())
             {
-                db.Profiles.Add(newProf);
-                db.SaveChanges();
+                var profileID = db.Profiles.Where(c => c.Username == username || c.PersonId == personalId).FirstOrDefault();
+                if (profileID == null )
+                {
+                    db.Profiles.Add(newProf);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    throw new Exception("Person with username already exist!");
+                }
             }
         }
 

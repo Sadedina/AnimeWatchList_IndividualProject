@@ -15,7 +15,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AnimeBusiness\AnimeBusiness.csproj" />
-    <ProjectReference Include="..\AnimeData\AnimeData.csproj" />
   </ItemGroup>
 
 </Project>
