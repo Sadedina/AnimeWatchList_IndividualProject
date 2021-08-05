@@ -10,7 +10,19 @@ namespace AnimeData
     {
         public override string ToString()
         {
-            return $"{PersonId} - {FirstName} {LastName}";
+            string name = $"{FirstName} {LastName}\t\t\t- {Username}";
+
+            int nameCount = FirstName.Count() + LastName.Count();
+            if(nameCount > 12)
+            {
+                name = $"{FirstName} {LastName}\t\t- {Username}";
+            }
+            else if(nameCount > 18)
+            {
+                name = $"{FirstName} {LastName} - {Username}";
+            }
+
+            return name;
         }
     }
 }

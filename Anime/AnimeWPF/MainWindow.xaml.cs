@@ -41,6 +41,14 @@ namespace AnimeWPF
             ListBoxProfile.ItemsSource = _profileManager.RetrieveAll();
         }
 
+        private void EmptyProfileFields()
+        {
+                TextUsername.Text = "";
+                TextFirstName.Text = "";
+                TextLastName.Text = "";
+                TextAge.Text = "";
+                TextCountry.Text = "";
+        }
         private void PopulateProfileFields()
         {
             if (_profileManager.SelectedUser != null)
@@ -80,6 +88,7 @@ namespace AnimeWPF
             // put back the screen data
             PopulateListBox();
             ListBoxProfile.SelectedItem = _profileManager.SelectedUser;
+            EmptyProfileFields();
         }
 
         private void ButtonUpdate_Click(object sender, RoutedEventArgs e)
@@ -97,6 +106,7 @@ namespace AnimeWPF
             // put back the screen data
             PopulateListBox();
             ListBoxProfile.SelectedItem = _profileManager.SelectedUser;
+            EmptyProfileFields();
         }
 
         private void ButtonDelete_Click(object sender, RoutedEventArgs e)
@@ -108,6 +118,7 @@ namespace AnimeWPF
             // put back the screen data
             PopulateListBox();
             ListBoxProfile.SelectedItem = _profileManager.SelectedUser;
+            EmptyProfileFields();
         }
     }
 }

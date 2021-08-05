@@ -28,7 +28,7 @@ namespace AnimeBusiness
         public void Create(string username, string firstName, string lastName, int age, string country)
         {
             // Making unique personal Id for User that is unchangable, even when username is changed
-            string personalId = $"{username.ToLower().Substring(0, 3)}{firstName.ToUpper().Substring(0, 3)}{lastName.ToUpper().Substring(0, 3)}";
+            string personalId = $"{username.ToLower().Substring(0, 3)}{firstName.ToUpper().Substring(0, 3)}{lastName.ToUpper().Substring(0, 2)}";
             
             var newProf = new Profile()
             {
