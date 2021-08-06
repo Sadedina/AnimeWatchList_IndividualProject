@@ -20,7 +20,9 @@ namespace AnimeWPF
         }
         private void ButtonWatchlist_Click(object sender, RoutedEventArgs e)
         {
-
+            WatchListPage watchListpage = new WatchListPage();
+            watchListpage.Show();
+            this.Close();
         }
         private void ButtonRecomendation_Click(object sender, RoutedEventArgs e)
         {

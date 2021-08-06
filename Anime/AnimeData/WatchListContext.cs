@@ -36,9 +36,7 @@ namespace AnimeData
 
             modelBuilder.Entity<Anime>(entity =>
             {
-                entity.Property(e => e.AnimeId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("AnimeID");
+                entity.Property(e => e.AnimeId).HasColumnName("AnimeID");
 
                 entity.Property(e => e.AnimeName)
                     .IsRequired()
@@ -115,15 +113,14 @@ namespace AnimeData
 
             modelBuilder.Entity<Watchlist>(entity =>
             {
-                entity.HasKey(e => new { e.PersonId, e.AnimeId })
-                    .HasName("PK__Watchlis__10D7DA9557DB0008");
+                entity.HasNoKey();
+
+                entity.Property(e => e.AnimeId).HasColumnName("AnimeID");
 
                 entity.Property(e => e.PersonId)
                     .HasMaxLength(255)
                     .IsUnicode(false)
                     .HasColumnName("PersonID");
-
-                entity.Property(e => e.AnimeId).HasColumnName("AnimeID");
 
                 entity.Property(e => e.Rating).HasColumnName("rating");
 
@@ -131,6 +128,16 @@ namespace AnimeData
                     .HasMaxLength(255)
                     .IsUnicode(false)
                     .HasColumnName("watching");
+
+                entity.HasOne(d => d.Anime)
+                    .WithMany()
+                    .HasForeignKey(d => d.AnimeId)
+                    .HasConstraintName("FK__Watchlist__Anime__5441852A");
+
+                entity.HasOne(d => d.Person)
+                    .WithMany()
+                    .HasForeignKey(d => d.PersonId)
+                    .HasConstraintName("FK__Watchlist__Perso__534D60F1");
             });
 
             OnModelCreatingPartial(modelBuilder);

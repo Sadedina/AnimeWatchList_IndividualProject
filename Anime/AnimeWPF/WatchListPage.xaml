@@ -1,9 +1,9 @@
-﻿<Window x:Class="AnimeWPF.MainWindow"
+﻿<Window x:Class="AnimeWPF.WatchListPage"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:AnimeWPF" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:AnimeWPF"
         mc:Ignorable="d"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -12,7 +12,7 @@
         TextOptions.TextRenderingMode="Auto"
         FontFamily="{DynamicResource MaterialDesignFont}"
         Title="MainWindow" Height="600" Width="1200" Background="Black" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
-    
+
     <Grid>
         <Grid>
             <Grid.RowDefinitions>
@@ -59,7 +59,10 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <ListBox x:Name="ListBoxProfile" Background="#FFD0D7DD"  Grid.Row="5" Grid.Column="10" SelectionChanged="ListBoxProfile_SelectionChanged" Grid.ColumnSpan="9" Grid.RowSpan="11"></ListBox>
+            <ListBox x:Name="ListBoxAnime" Background="#FFD0D7DD"  Grid.Row="6" Grid.Column="10" SelectionChanged="ListBoxAnime_SelectionChanged" Grid.ColumnSpan="9" Grid.RowSpan="5">
+            </ListBox>
+            <ListBox x:Name="ListBoxInformation" Background="#FFD0D7DD"  Grid.Row="14" Grid.Column="0" SelectionChanged="ListBoxInformation_SelectionChanged" Grid.ColumnSpan="18" Grid.RowSpan="6" Margin="40,20,40,25">
+            </ListBox>
             <Grid Grid.Column= "1" Grid.Row="0" Grid.ColumnSpan="20" Grid.RowSpan="20" Margin="0,0,-40,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
@@ -106,30 +109,30 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <Label x:Name="LabelUsername" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="5" Grid.RowSpan="1" FontWeight="Bold" Foreground="#DDFFFFFF" FontFamily="Arial">Username</Label>
-                <Label x:Name="LabelFirstName" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="5" Grid.RowSpan="1" FontWeight="Bold" Foreground="#DDFFFFFF" FontFamily="Arial">First Name</Label>
-                <Label x:Name="LabelLastName" Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="5" Grid.RowSpan="1" FontWeight="Bold" Foreground="#DDFFFFFF" FontFamily="Arial">Last Name</Label>
-                <Label x:Name="LabelAge" Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="5" Grid.RowSpan="1" FontWeight="Bold" Foreground="#DDFFFFFF" FontFamily="Arial">Age</Label>
-                <Label x:Name="LabelCountry" Grid.Row="13" Grid.Column="0" Grid.ColumnSpan="5" Grid.RowSpan="1" FontWeight="Bold" Foreground="#DDFFFFFF" FontFamily="Arial">Country</Label>
 
-                <TextBox x:Name="TextUsername" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="7" Grid.RowSpan="1" Background="White"></TextBox>
-                <TextBox x:Name="TextFirstName" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="7" Grid.RowSpan="1" Background="White"></TextBox>
-                <TextBox x:Name="TextLastName" Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="7" Grid.RowSpan="1" Background="White"></TextBox>
-                <TextBox x:Name="TextAge" Grid.Row="12" Grid.Column="0" Grid.ColumnSpan="7" Grid.RowSpan="1" Background="White"></TextBox>
-                <TextBox x:Name="TextCountry" Grid.Row="14" Grid.Column="0" Grid.ColumnSpan="7" Grid.RowSpan="1" Background="White"></TextBox>
-
-                
-                
                 <Button x:Name="ButtonHome" Grid.Row="0" Grid.Column="0" Grid.RowSpan="5" Grid.ColumnSpan="3" Content="HOME" Click="ButtonHome_Click" Background="Black" BorderBrush="#FFF9F900" Foreground="#FFF9F900" FontWeight="Bold" FontStyle="Normal" FontFamily="Arial Black"/>
                 <Button x:Name="ButtonUser" Grid.Row="0" Grid.Column="4" Grid.RowSpan="5" Grid.ColumnSpan="4" Content="USER" Click="ButtonUser_Click" Background="Black" BorderBrush="#FFF9F900" Foreground="#FFF9F900" FontWeight="Bold" FontStyle="Normal" FontFamily="Arial Black"/>
                 <Button x:Name="ButtonWatchlist" Grid.Row="0" Grid.Column="10" Grid.RowSpan="5" Grid.ColumnSpan="4" Content="WATCHLIST" Click="ButtonWatchlist_Click" Background="Black" BorderBrush="#FFF9F900" Foreground="#FFF9F900" FontWeight="Bold" FontStyle="Normal" FontFamily="Arial Black"/>
                 <Button x:Name="ButtonRecommendation" Grid.Row="0" Grid.Column="15" Grid.RowSpan="5" Grid.ColumnSpan="3" Content="RECOMMEND" Click="ButtonRecomendation_Click" Background="Black" BorderBrush="#FFF9F900" Foreground="#FFF9F900" FontWeight="Bold" FontStyle="Normal" FontFamily="Arial Black"/>
 
-                
-                
-                <Button x:Name="ButtonRegister" Grid.Row="16" Grid.Column="2" Grid.RowSpan="3" Grid.ColumnSpan="3"  Content="REGISTER" Click="ButtonRegister_Click" Background="Black" BorderBrush="Red" Foreground="Red" FontWeight="Bold" FontStyle="Normal" FontFamily="Arial Black"/>
-                <Button x:Name="ButtonUpdate" Grid.Row="16" Grid.Column="9" Grid.RowSpan="3" Grid.ColumnSpan="3" Content="UPDATE" Click="ButtonUpdate_Click" Background="Black" BorderBrush="Red" Foreground="Red" FontWeight="Bold" FontStyle="Normal" FontFamily="Arial Black"/>
-                <Button x:Name="ButtonDelete" Grid.Row="16" Grid.Column="15" Grid.RowSpan="3" Grid.ColumnSpan="3" Content="DELETE" Click="ButtonDelete_Click" Background="Black" BorderBrush="Red" Foreground="Red" FontWeight="Bold" FontStyle="Normal" FontFamily="Arial Black"/>
+
+
+
+
+                <ComboBox x:Name="SliverRatings" Grid.Row="11" Grid.Column="9" Grid.RowSpan="2" Grid.ColumnSpan="2" Background="{x:Null}" BorderBrush="#FF51FF00" Foreground="#FF51FF00" Margin="20,-20,-20,0" >
+                </ComboBox>
+
+                <ComboBox x:Name="SliderWatched" Grid.Row="13" Grid.Column="9" Grid.RowSpan="2" Grid.ColumnSpan="2" IsEditable="True" Background="{x:Null}" BorderBrush="#FF51FF00" Foreground="#FF51FF00" Margin="20,-60,-20,0">
+                </ComboBox>
+
+
+
+
+                <Button x:Name="ButtonAdd" Grid.Row="7" Grid.Column="3" Grid.RowSpan="2" Grid.ColumnSpan="2" Content="ADD" Click="ButtonAdd_Click" Background="Black" BorderBrush="#FF51FF00" Foreground="#FF51FF00" FontWeight="Bold" FontStyle="Normal" FontFamily="Arial Black"/>
+                <Button x:Name="ButtonUpdate" Grid.Row="11" Grid.Column="12" Grid.RowSpan="2" Grid.ColumnSpan="2" Margin="0,30,0,-10" Content="UPDATE" Click="ButtonUpdate_Click" Background="Black" BorderBrush="#FF51FF00" Foreground="#FF51FF00" FontWeight="Bold" FontStyle="Normal" FontFamily="Arial Black"/>
+                <Button x:Name="ButtonRemove" Grid.Row="11" Grid.Column="16" Grid.RowSpan="2" Grid.ColumnSpan="2" Margin="0,30,-0,-10" Content="REMOVE" Click="ButtonRemove_Click" Background="Black" BorderBrush="#FF51FF00" Foreground="#FF51FF00" FontWeight="Bold" FontStyle="Normal" FontFamily="Arial Black"/>
+                <Button x:Name="ButtonRequest" Grid.Row="17" Grid.Column="17" Grid.RowSpan="1" Grid.ColumnSpan="2" Content="REQUEST" Click="ButtonRequest_Click" Background="Black" BorderBrush="#FF51FF00" Foreground="#FF51FF00" FontWeight="Bold" FontStyle="Normal" FontFamily="Arial Black" FontSize="8" Margin="15,0,15,-5"/>
+
             </Grid>
         </Grid>
     </Grid>

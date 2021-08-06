@@ -50,7 +50,7 @@ namespace AnimeBusiness
                 }
                 else
                 {
-                    throw new Exception("Person with username already exist!");
+                    Debug.WriteLine($"{username} already exist!");
                 }
             }
         }
@@ -93,7 +93,7 @@ namespace AnimeBusiness
                 var profileID = db.Profiles.Where(c => c.Username == username).FirstOrDefault();
                 if (profileID == null)
                 {
-                    Debug.WriteLine($"Customer {username} not found");
+                    Debug.WriteLine($"Profile with {username} not found");
                     return false;
                 }
                 db.Profiles.RemoveRange(profileID);
