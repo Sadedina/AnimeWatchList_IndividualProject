@@ -119,13 +119,36 @@
 
 
 
-                <ComboBox x:Name="SliverRatings" Grid.Row="11" Grid.Column="9" Grid.RowSpan="2" Grid.ColumnSpan="2" Background="{x:Null}" BorderBrush="#FF51FF00" Foreground="#FF51FF00" Margin="20,-20,-20,0" >
+                <ComboBox x:Name="ratingsComboBox" Grid.Row="11" Grid.Column="9" Grid.RowSpan="2" Grid.ColumnSpan="2" Background="{x:Null}" BorderBrush="#FF51FF00" Foreground="#FF51FF00" Margin="20,-20,-20,0" SelectionChanged="ratingsComboBox_SelectionChanged" />
+
+                <ComboBox x:Name="watchedeComboBox" Grid.Row="13" Grid.Column="9" Grid.RowSpan="2" Grid.ColumnSpan="2" IsEditable="True" Background="{x:Null}" BorderBrush="#FF51FF00" Foreground="#FF51FF00" Margin="20,-60,-20,0" SelectionChanged="watchedeComboBox_SelectionChanged">
                 </ComboBox>
 
-                <ComboBox x:Name="SliderWatched" Grid.Row="13" Grid.Column="9" Grid.RowSpan="2" Grid.ColumnSpan="2" IsEditable="True" Background="{x:Null}" BorderBrush="#FF51FF00" Foreground="#FF51FF00" Margin="20,-60,-20,0">
+
+                <ComboBox x:Name="usernameComboBox" Grid.Row="5" Grid.Column="2" Grid.RowSpan="2" Grid.ColumnSpan="2" IsEditable="True" Background="{x:Null}" BorderBrush="#FF51FF00" Foreground="#FF51FF00" Margin="20,-60,-20,0" SelectionChanged="usernameComboBox_SelectionChanged">
                 </ComboBox>
 
 
+                <ComboBox x:Name="animeComboBox" Grid.Row="12" Grid.Column="2" Grid.RowSpan="2" Grid.ColumnSpan="2" IsEditable="True" Background="{x:Null}" BorderBrush="#FF51FF00" Foreground="#FF51FF00" Margin="20,-60,-20,0" SelectionChanged="animeComboBox_SelectionChanged">
+                </ComboBox>
+
+                <!--<ComboBox Grid.Row="5" Grid.Column="5" ItemsSource="{Binding Users}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Username}">
+                                
+                            </TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>-->
+                          
+                
+                
+                
+                
+                
+                
+                
 
 
                 <Button x:Name="ButtonAdd" Grid.Row="7" Grid.Column="3" Grid.RowSpan="2" Grid.ColumnSpan="2" Content="ADD" Click="ButtonAdd_Click" Background="Black" BorderBrush="#FF51FF00" Foreground="#FF51FF00" FontWeight="Bold" FontStyle="Normal" FontFamily="Arial Black"/>

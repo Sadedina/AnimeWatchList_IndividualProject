@@ -4,14 +4,16 @@ using AnimeData;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AnimeData.Migrations
 {
     [DbContext(typeof(WatchListContext))]
-    partial class WatchListContextModelSnapshot : ModelSnapshot
+    [Migration("20210806144501_UpdateCompositeKey")]
+    partial class UpdateCompositeKey
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

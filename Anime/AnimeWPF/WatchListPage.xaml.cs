@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows;
 using System.Diagnostics;
 using AnimeBusiness;
+using System.Windows.Controls;
 
 namespace AnimeWPF
 {
@@ -11,9 +12,14 @@ namespace AnimeWPF
     /// </summary>
     public partial class WatchListPage : Window
     {
+        private WatchListManager _watchlistManager = new WatchListManager();
+        private AnimeManager _animeManager = new AnimeManager();
+        private ProfileManager _profileManager = new ProfileManager();
+
         public WatchListPage()
         {
             InitializeComponent();
+            PopulateUsernameComboBox();
         }
 
         private void ButtonHome_Click(object sender, RoutedEventArgs e)
@@ -35,35 +41,45 @@ namespace AnimeWPF
 
         }
 
-        private WatchListManager _watchlistManager = new WatchListManager();
 
-        private void PopulateListBox()
+        private void PopulateUsernameComboBox()
         {
-            ListBoxAnime.ItemsSource = _watchlistManager.RetrieveAll();
-        }
-
-        private void PopulateAnimeFields()
-        {
-            if (_watchlistManager.SelectedWatchlist != null)
+            foreach (var item in _profileManager.RetrieveUsername())
             {
-                //TextUsername.Text = _watchlistManager.SelectedUser.Username;
-                //TextFirstName.Text = _watchlistManager.SelectedUser.FirstName;
-                //TextLastName.Text = _watchlistManager.SelectedUser.LastName;
-                //TextAge.Text = _watchlistManager.SelectedUser.Age.ToString();
-                //TextCountry.Text = _watchlistManager.SelectedUser.Country;
-
+                usernameComboBox.Items.Add(item);
             }
         }
+        private void usernameComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            ComboBox comboBox = (ComboBox)sender;
+            if (comboBox != null && comboBox.SelectedValue != null)
+            {
+                PopulateAnimeBox(comboBox.SelectedValue.ToString());
+            }
+
+        }
+        private void PopulateAnimeBox(string username)
+        {
+            var Userid = _profileManager.RetrieveUserId(username);
+
+            foreach (var item in _watchlistManager.RetrieveAllUsersAnime(Userid))
+            {
+                ListBoxAnime.Items.Add(item);
+            }
+        }
+        
+
+
 
         private void ListBoxAnime_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            if (ListBoxAnime.SelectedItem != null)
-            {
-                _watchlistManager.SetSelectedWatchlist(ListBoxAnime.SelectedItem);
+            //if (ListBoxAnime.SelectedItem != null)
+            //{
+            //    _watchlistManager.SetSelectedWatchlist(ListBoxAnime.SelectedItem);
 
-                Trace.WriteLineIf(ListBoxAnime.SelectedItem.ToString().Contains("BLOG"), $"BLOG was selected");
-                PopulateListBox();
-            }
+            //    Trace.WriteLineIf(ListBoxAnime.SelectedItem.ToString().Contains("BLOG"), $"BLOG was selected");
+            //    PopulateListBox();
+            //}
         }
 
         private void ButtonRegister_Click(object sender, RoutedEventArgs e)
@@ -113,9 +129,11 @@ namespace AnimeWPF
             //EmptyProfileFields();
         }
 
+
+
         private void ListBoxInformation_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-
+            
         }
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
@@ -129,6 +147,21 @@ namespace AnimeWPF
         }
 
         private void ButtonRequest_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ratingsComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void watchedeComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void animeComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
 
         }

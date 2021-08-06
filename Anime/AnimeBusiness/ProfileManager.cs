@@ -25,6 +25,22 @@ namespace AnimeBusiness
             }
         }
 
+        public List<string> RetrieveUsername()
+        {
+            using (var db = new WatchListContext())
+            {
+                return db.Profiles.Select(c => c.Username).ToList();
+            }
+        }
+
+        public string RetrieveUserId(string username)
+        {
+            using (var db = new WatchListContext())
+            {
+                return db.Profiles.Where(c => c.Username == username).FirstOrDefault().PersonId;
+            }
+        }
+
         public void Create(string username, string firstName, string lastName, int age, string country)
         {
             // Making unique personal Id for User that is unchangable, even when username is changed

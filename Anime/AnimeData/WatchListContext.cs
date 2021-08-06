@@ -113,14 +113,15 @@ namespace AnimeData
 
             modelBuilder.Entity<Watchlist>(entity =>
             {
-                entity.HasNoKey();
-
-                entity.Property(e => e.AnimeId).HasColumnName("AnimeID");
+                entity.HasKey(e => new { e.PersonId, e.AnimeId })
+                    .HasName("PK__Watchlis__10D7DA958DB11BF3");
 
                 entity.Property(e => e.PersonId)
                     .HasMaxLength(255)
                     .IsUnicode(false)
                     .HasColumnName("PersonID");
+
+                entity.Property(e => e.AnimeId).HasColumnName("AnimeID");
 
                 entity.Property(e => e.Rating).HasColumnName("rating");
 
@@ -130,14 +131,16 @@ namespace AnimeData
                     .HasColumnName("watching");
 
                 entity.HasOne(d => d.Anime)
-                    .WithMany()
+                    .WithMany(p => p.Watchlists)
                     .HasForeignKey(d => d.AnimeId)
-                    .HasConstraintName("FK__Watchlist__Anime__5441852A");
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Watchlist__Anime__5BE2A6F2");
 
                 entity.HasOne(d => d.Person)
-                    .WithMany()
+                    .WithMany(p => p.Watchlists)
                     .HasForeignKey(d => d.PersonId)
-                    .HasConstraintName("FK__Watchlist__Perso__534D60F1");
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Watchlist__Perso__5CD6CB2B");
             });
 
             OnModelCreatingPartial(modelBuilder);

@@ -8,7 +8,7 @@ namespace AnimeData
     public partial class Watchlist
     {
         public string PersonId { get; set; }
-        public int? AnimeId { get; set; }
+        public int AnimeId { get; set; }
         public int? Rating { get; set; }
         public string Watching { get; set; }
 

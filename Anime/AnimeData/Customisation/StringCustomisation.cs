@@ -10,26 +10,15 @@ namespace AnimeData
     {
         public override string ToString()
         {
-            string name = $"{FirstName} {LastName}\n- {Username}";
-
-            //int nameCount = FirstName.Count() + LastName.Count();
-            //if(nameCount > 12)
-            //{
-            //    name = $"{FirstName} {LastName}\t\t- {Username}";
-            //}
-            //else if(nameCount > 18)
-            //{
-            //    name = $"{FirstName} {LastName} - {Username}";
-            //}
-
-            return name;
+            return $"{FirstName} {LastName}\n- {Username}";
         }
     }
+
     public partial class Watchlist
     {
         public override string ToString()
         {
-            return $"{Anime}";
+            return $"{AnimeId} - {Rating} - {Watching}";
         }
     }
 }

@@ -10,6 +10,14 @@ namespace AnimeWPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        private ProfileManager _profileManager = new ProfileManager();
+        private string _oldUsername;
+        public MainWindow()
+        {
+            InitializeComponent();
+            PopulateListBox();
+        }
+
         private void ButtonHome_Click(object sender, RoutedEventArgs e)
         {
 
@@ -30,26 +38,17 @@ namespace AnimeWPF
         }
 
 
-
-        private ProfileManager _profileManager = new ProfileManager();
-        private string _oldUsername;
-        public MainWindow()
+        private void EmptyProfileFields()
         {
-            InitializeComponent();
-            PopulateListBox();
+            TextUsername.Text = "";
+            TextFirstName.Text = "";
+            TextLastName.Text = "";
+            TextAge.Text = "";
+            TextCountry.Text = "";
         }
         private void PopulateListBox()
         {
             ListBoxProfile.ItemsSource = _profileManager.RetrieveAll();
-        }
-
-        private void EmptyProfileFields()
-        {
-                TextUsername.Text = "";
-                TextFirstName.Text = "";
-                TextLastName.Text = "";
-                TextAge.Text = "";
-                TextCountry.Text = "";
         }
         private void PopulateProfileFields()
         {
@@ -65,6 +64,7 @@ namespace AnimeWPF
             }
         }
 
+
         private void ListBoxProfile_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             if (ListBoxProfile.SelectedItem != null)
@@ -75,6 +75,7 @@ namespace AnimeWPF
                 PopulateProfileFields();
             }
         }
+
 
         private void ButtonRegister_Click(object sender, RoutedEventArgs e)
         {
@@ -92,7 +93,6 @@ namespace AnimeWPF
             ListBoxProfile.SelectedItem = _profileManager.SelectedUser;
             EmptyProfileFields();
         }
-
         private void ButtonUpdate_Click(object sender, RoutedEventArgs e)
         {
             //Update(string oldUsername, string username, string firstName, string lastName, int age, string country)
@@ -110,7 +110,6 @@ namespace AnimeWPF
             ListBoxProfile.SelectedItem = _profileManager.SelectedUser;
             EmptyProfileFields();
         }
-
         private void ButtonDelete_Click(object sender, RoutedEventArgs e)
         {
             //Delete(string username)
