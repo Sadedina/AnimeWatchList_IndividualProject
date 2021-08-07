@@ -10,15 +10,14 @@ namespace AnimeData
     {
         public override string ToString()
         {
-            return $"{FirstName} {LastName}\n- {Username}";
+            return $"Name: {FirstName} {LastName}\n@{Username}";
         }
     }
-
-    public partial class Watchlist
+    public partial class Anime
     {
         public override string ToString()
         {
-            return $"{AnimeId} - {Rating} - {Watching}";
+            return $"{AnimeName}";
         }
     }
 }

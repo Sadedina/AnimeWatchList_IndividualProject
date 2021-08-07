@@ -15,11 +15,11 @@ namespace AnimeWPF
         private WatchListManager _watchlistManager = new WatchListManager();
         private AnimeManager _animeManager = new AnimeManager();
         private ProfileManager _profileManager = new ProfileManager();
-
+        private string _username;
         public WatchListPage()
         {
             InitializeComponent();
-            PopulateUsernameComboBox();
+            PopulateUsername();
         }
 
         private void ButtonHome_Click(object sender, RoutedEventArgs e)
@@ -42,62 +42,65 @@ namespace AnimeWPF
         }
 
 
-        private void PopulateUsernameComboBox()
+        private void PopulateUsername()
         {
             foreach (var item in _profileManager.RetrieveUsername())
             {
-                usernameComboBox.Items.Add(item);
+                usernameList.Items.Add(item);
             }
         }
-        private void usernameComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        private void ListBoxUsernames_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ComboBox comboBox = (ComboBox)sender;
-            if (comboBox != null && comboBox.SelectedValue != null)
+            ListBoxAnimeWatchlistForUser.Items.Clear();
+            var listBox = (ListBox)sender;
+            if (listBox != null && listBox.SelectedValue != null)
             {
-                PopulateAnimeBox(comboBox.SelectedValue.ToString());
+                _username = listBox.SelectedValue.ToString();
+                PopulateAnimeListBoxSuggestionForUser();
+                PopulateAnimeBoxInformation(_username);
             }
-
         }
-        private void PopulateAnimeBox(string username)
+        private void PopulateAnimeListBoxSuggestionForUser()
         {
-            var Userid = _profileManager.RetrieveUserId(username);
-
-            foreach (var item in _watchlistManager.RetrieveAllUsersAnime(Userid))
+            animeListBoxSummaryAtBottom.Items.Clear();
+            foreach (var item in _watchlistManager.RetrieveOtherAnimes(_username))
             {
-                ListBoxAnime.Items.Add(item);
+                animeListBoxSummaryAtBottom.Items.Add(item);
             }
         }
-        
-
-
-
-        private void ListBoxAnime_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        private void PopulateAnimeBoxInformation(string username)
         {
-            //if (ListBoxAnime.SelectedItem != null)
-            //{
-            //    _watchlistManager.SetSelectedWatchlist(ListBoxAnime.SelectedItem);
-
-            //    Trace.WriteLineIf(ListBoxAnime.SelectedItem.ToString().Contains("BLOG"), $"BLOG was selected");
-            //    PopulateListBox();
-            //}
+            foreach (var item in _watchlistManager.RetrieveAnimeDetailsGivenUsername(username))
+            {
+                ListBoxAnimeWatchlistForUser.Items.Add(item.AnimeName);
+            }
         }
 
-        private void ButtonRegister_Click(object sender, RoutedEventArgs e)
+        private void AnimeListBoxSummary_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            //Create(string username, string firstName, string lastName, int age, string country)
-            //_profileManager.Create(
-            //      username: TextUsername.Text
-            //    , firstName: TextFirstName.Text
-            //    , lastName: TextLastName.Text
-            //    , age: Convert.ToInt32(TextAge.Text)
-            //    , country: TextCountry.Text);
+            animeListBoxSummaryAtBottom.Items.Clear();
+            //_watchlistManager.SetSelectedAnimeForInfo(ListBoxAnimeWatchlistForUser.SelectedItem);
+            
 
-            //ListBoxProfile.ItemsSource = null;
-            //// put back the screen data
-            //PopulateListBox();
-            //ListBoxProfile.SelectedItem = _profileManager.SelectedUser;
-            //EmptyProfileFields();
+            if (ListBoxAnimeWatchlistForUser.SelectedItem != null)
+            {
+                var list = _watchlistManager.RetrieveAnimeDetailsGivenUser(ListBoxAnimeWatchlistForUser.SelectedItem.ToString());
+                foreach (var item in list)
+                {
+                    TextInfoName.Content = $"Rank: {item.Rank}" +
+                    $"\nTitle: {item.AnimeName}" +
+                    $"\nGenre: {item.Genre}" +
+                    $"\nEpisode: {item.Episode}" +
+                    $"\nYear: {item.ReleaseYear}" +
+                    $"\nStatus: {item.Status}";
+                    TextInfoSum.Text = $"SUMMARY\n{item.Summary}";
+                }
+                Trace.WriteLineIf(ListBoxAnimeWatchlistForUser.SelectedItem.ToString().Contains("BLOG"), $"BLOG was selected");
+            }
         }
+
+
+
 
         private void ButtonUpdate_Click(object sender, RoutedEventArgs e)
         {
@@ -131,11 +134,7 @@ namespace AnimeWPF
 
 
 
-        private void ListBoxInformation_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-        {
-            
-        }
-
+        
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
 
@@ -162,6 +161,16 @@ namespace AnimeWPF
         }
 
         private void animeComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void ListBoxRating_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void ListBoxWatched_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }

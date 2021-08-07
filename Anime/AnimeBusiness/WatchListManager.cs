@@ -17,11 +17,196 @@ namespace AnimeBusiness
             SelectedWatchlist = (Watchlist)selectedWatchlist;
         }
 
-        public List<Watchlist> RetrieveAllUsersAnime(string userId)
+        public UserWatchAnimeInc SelectedAnimeRetriveAll { get; set; }
+        public void SetSelectedAnimeForInfo(object item)
+        {
+            SelectedAnimeRetriveAll = (UserWatchAnimeInc)item;
+        }
+
+        public List<UserWatchAnimeInc> RetrieveAllUsersInformationAndAnimes(string password = null)
+        {
+            var list = new List<UserWatchAnimeInc>();
+
+            using (var db = new WatchListContext())
+            {
+                var queryTotal =
+                    from w in db.Watchlists
+                    join a in db.Animes on w.AnimeId equals a.AnimeId
+                    join p in db.Profiles on w.PersonId equals p.PersonId
+                    select new
+                    {
+                        personId = p.PersonId,
+                        username = p.Username,
+                        animeId = a.AnimeId,
+                        animeName = a.AnimeName,
+                        rating = w.Rating,
+                        watched = w.Watching,
+                        genre = a.Genre,
+                        episode = a.Episode,
+                        releaseYear = a.ReleaseYear,
+                        status = a.Status,
+                        rank = a.Rank,
+                        summary = a.Summary
+                    };
+
+                foreach (var item in queryTotal)
+                {
+                    var userWatched = new UserWatchAnimeInc();
+                    userWatched.PersonId = item.personId;
+                    userWatched.Username = item.username;
+                    userWatched.AnimeId = item.animeId;
+                    userWatched.AnimeName = item.animeName;
+                    userWatched.Rating = item.rating;
+                    userWatched.Watching = item.watched;
+                    userWatched.Genre = item.genre;
+                    userWatched.Episode = item.episode;
+                    userWatched.ReleaseYear = item.releaseYear;
+                    userWatched.Status = item.status;
+                    userWatched.Rank = item.rank;
+                    userWatched.Summary = item.summary;
+
+                    list.Add(userWatched);
+                }
+
+                return list;
+            }
+        }
+
+        public List<UserWatchAnimeInc> RetrieveAnimeDetailsGivenUsername(string name)
+        {
+            var list = new List<UserWatchAnimeInc>();
+            using (var db = new WatchListContext())
+            {
+                var queryTotal =
+                    from w in db.Watchlists
+                    join a in db.Animes on w.AnimeId equals a.AnimeId
+                    join p in db.Profiles on w.PersonId equals p.PersonId
+                    where p.Username == name
+                    select new
+                    {
+                        personId = p.PersonId,
+                        username = p.Username,
+                        animeId = a.AnimeId,
+                        animeName = a.AnimeName,
+                        rating = w.Rating,
+                        watched = w.Watching,
+                        genre = a.Genre,
+                        episode = a.Episode,
+                        releaseYear = a.ReleaseYear,
+                        status = a.Status,
+                        rank = a.Rank,
+                        summary = a.Summary
+                    };
+                foreach (var item in queryTotal)
+                {
+                    var userWatched = new UserWatchAnimeInc();
+                    userWatched.PersonId = item.personId;
+                    userWatched.Username = item.username;
+                    userWatched.AnimeId = item.animeId;
+                    userWatched.AnimeName = item.animeName;
+                    userWatched.Rating = item.rating;
+                    userWatched.Watching = item.watched;
+                    userWatched.Genre = item.genre;
+                    userWatched.Episode = item.episode;
+                    userWatched.ReleaseYear = item.releaseYear;
+                    userWatched.Status = item.status;
+                    userWatched.Rank = item.rank;
+                    userWatched.Summary = item.summary;
+
+                    list.Add(userWatched);
+                }
+                return list;
+            }
+        }
+
+        public List<UserWatchAnimeInc> RetrieveAnimeDetailsGivenUser(string name)
+        {
+            var list = new List<UserWatchAnimeInc>();
+            using (var db = new WatchListContext())
+            {
+                var queryTotal =
+                    from w in db.Watchlists
+                    join a in db.Animes on w.AnimeId equals a.AnimeId
+                    join p in db.Profiles on w.PersonId equals p.PersonId
+                    where a.AnimeName == name
+                    select new
+                    {
+                        personId = p.PersonId,
+                        username = p.Username,
+                        animeId = a.AnimeId,
+                        animeName = a.AnimeName,
+                        rating = w.Rating,
+                        watched = w.Watching,
+                        genre = a.Genre,
+                        episode = a.Episode,
+                        releaseYear = a.ReleaseYear,
+                        status = a.Status,
+                        rank = a.Rank,
+                        summary = a.Summary
+                    };
+                foreach (var item in queryTotal)
+                {
+                    var userWatched = new UserWatchAnimeInc();
+                    userWatched.PersonId = item.personId;
+                    userWatched.Username = item.username;
+                    userWatched.AnimeId = item.animeId;
+                    userWatched.AnimeName = item.animeName;
+                    userWatched.Rating = item.rating;
+                    userWatched.Watching = item.watched;
+                    userWatched.Genre = item.genre;
+                    userWatched.Episode = item.episode;
+                    userWatched.ReleaseYear = item.releaseYear;
+                    userWatched.Status = item.status;
+                    userWatched.Rank = item.rank;
+                    userWatched.Summary = item.summary;
+
+                    list.Add(userWatched);
+                }
+                return list;
+            }
+        }
+
+        public List<Anime> RetrieveOtherAnimes(string username)
         {
             using (var db = new WatchListContext())
             {
-                return db.Watchlists.Where(p => p.PersonId == userId).ToList();
+                var findingNeAnime = db.Animes.ToList();
+                var findingUserId = db.Profiles.Where(c => c.Username == username).FirstOrDefault().PersonId;
+                if (db.Watchlists.Where(a => a.PersonId == findingUserId) == null)
+                {
+                    var findingAnimeId = db.Watchlists.Where(a => a.PersonId == findingUserId).FirstOrDefault().AnimeId;
+                    findingNeAnime = db.Animes.Where(c => c.AnimeId != findingAnimeId).ToList();
+                }
+                return findingNeAnime;
+            }
+        }
+
+
+
+        public string RetrieveAnimeDetails(string animeName, int num)
+        {
+            using (var db = new WatchListContext())
+            {
+                var result = ""; 
+                var n = db.Animes.Where(c => c.AnimeName == animeName).FirstOrDefault().AnimeName;
+                var g = db.Animes.Where(c => c.AnimeName == animeName).FirstOrDefault().Genre;
+                var t = db.Animes.Where(c => c.AnimeName == animeName).FirstOrDefault().Type;
+                var e = db.Animes.Where(c => c.AnimeName == animeName).FirstOrDefault().Episode;
+                var r = db.Animes.Where(c => c.AnimeName == animeName).FirstOrDefault().ReleaseYear;
+                var s = db.Animes.Where(c => c.AnimeName == animeName).FirstOrDefault().Status;
+                var l = db.Animes.Where(c => c.AnimeName == animeName).FirstOrDefault().Language;
+                var re = db.Animes.Where(c => c.AnimeName == animeName).FirstOrDefault().Restriction;
+                var su = db.Animes.Where(c => c.AnimeName == animeName).FirstOrDefault().Summary;
+                var ra = db.Animes.Where(c => c.AnimeName == animeName).FirstOrDefault().Rank;
+                if(num == 1)
+                {
+                    result = $"Rank: {ra}\nTitle: {n}\nGenre: {g}\nEpisode: {e}\nYear: {r}\nStatus:{s}";
+                }
+                else
+                {
+                    result = $"Summary\n\n{su}";
+                }
+                return result;
             }
         }
 

@@ -112,6 +112,18 @@ namespace AnimeBusiness
                     Debug.WriteLine($"Profile with {username} not found");
                     return false;
                 }
+                
+                var idOfProfile = db.Profiles.Where(c => c.Username == username).FirstOrDefault().PersonId;
+                var hasWatchlist = db.Watchlists.Where(c => c.PersonId == idOfProfile).FirstOrDefault();
+                var number = db.Watchlists.Where(c => c.PersonId == idOfProfile).Count();
+
+                while (number > 0)
+                {
+                    db.Watchlists.RemoveRange(hasWatchlist);
+                    db.SaveChanges();
+                    number = db.Watchlists.Where(c => c.PersonId == idOfProfile).Count();
+                }
+
                 db.Profiles.RemoveRange(profileID);
                 db.SaveChanges();
             }

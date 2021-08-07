@@ -25,6 +25,14 @@ namespace AnimeBusiness
             }
         }
 
+        public string RetrieveAnimeName(int animeNameId)
+        {
+            using (var db = new WatchListContext())
+            {
+                return db.Animes.Where(c => c.AnimeId == animeNameId).FirstOrDefault().AnimeName;
+            }
+        }
+
         public void Create(string animeName, string genre = null, string type = null, int? episode = null, int? releaseYear = null, string status = null, string language = null, int? restriction = null, int? rank = null, string summary = null)
         {
             var newAnime = new Anime()

@@ -42,6 +42,10 @@ namespace AnimeBusiness
             //newWatchlist.Create("Assassin", "Assassination Classroom");
             //newWatchlist.Create("Assassin", "Parasyte: The Maxim");
             //newWatchlist.Create("Assassin", "Death Note");
+            //newWatchlist.Create("ItsYaBoiTak", "Hunter x Hunter");
+            //newWatchlist.Create("ItsYaBoiTak", "My Hero Academia");
+            //newWatchlist.Create("ItsYaBoiTak", "One Punch Man");
+            //newWatchlist.Create("ItsYaBoiTak", "Assassination Classroom");
 
 
         }

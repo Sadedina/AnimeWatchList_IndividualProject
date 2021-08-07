@@ -40,11 +40,11 @@ namespace AnimeWPF
 
         private void EmptyProfileFields()
         {
-            TextUsername.Text = "";
-            TextFirstName.Text = "";
-            TextLastName.Text = "";
-            TextAge.Text = "";
-            TextCountry.Text = "";
+            TextUsername.Clear();
+            TextFirstName.Clear();
+            TextLastName.Clear();
+            TextAge.Clear();
+            TextCountry.Clear();
         }
         private void PopulateListBox()
         {
