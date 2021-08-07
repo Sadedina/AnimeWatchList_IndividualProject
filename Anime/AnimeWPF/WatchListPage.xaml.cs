@@ -19,7 +19,7 @@ namespace AnimeWPF
         public WatchListPage()
         {
             InitializeComponent();
-            PopulateUsername();
+            Username_Populate();
         }
 
         private void ButtonHome_Click(object sender, RoutedEventArgs e)
@@ -42,49 +42,51 @@ namespace AnimeWPF
         }
 
 
-        private void PopulateUsername()
+        private void Username_Populate()
         {
             foreach (var item in _profileManager.RetrieveUsername())
             {
                 usernameList.Items.Add(item);
             }
         }
-        private void ListBoxUsernames_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Username_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ListBoxAnimeWatchlistForUser.Items.Clear();
+            TextInfoSum.Text = "";
+            TextInfoName.Content = "";
+            WatchlistSpecificForUser.Items.Clear();
             var listBox = (ListBox)sender;
             if (listBox != null && listBox.SelectedValue != null)
             {
                 _username = listBox.SelectedValue.ToString();
-                PopulateAnimeListBoxSuggestionForUser();
-                PopulateAnimeBoxInformation(_username);
+                NewAnimeListToChooseFrom_Populate();
+                WatchlistSpecificForUser_Populate(_username);
             }
         }
-        private void PopulateAnimeListBoxSuggestionForUser()
+        private void NewAnimeListToChooseFrom_Populate()
         {
-            animeListBoxSummaryAtBottom.Items.Clear();
+            newAnimeListToChooseFrom.Items.Clear();
             foreach (var item in _watchlistManager.RetrieveOtherAnimes(_username))
             {
-                animeListBoxSummaryAtBottom.Items.Add(item);
+                newAnimeListToChooseFrom.Items.Add(item.AnimeName);
             }
         }
-        private void PopulateAnimeBoxInformation(string username)
+        private void WatchlistSpecificForUser_Populate(string username)
         {
             foreach (var item in _watchlistManager.RetrieveAnimeDetailsGivenUsername(username))
             {
-                ListBoxAnimeWatchlistForUser.Items.Add(item.AnimeName);
+                WatchlistSpecificForUser.Items.Add(item.AnimeName);
             }
         }
-
-        private void AnimeListBoxSummary_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        private void NewAnimeListToChooseFrom_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            animeListBoxSummaryAtBottom.Items.Clear();
+            TextInfoName.Content = "";
+            TextInfoSum.Text = "";
             //_watchlistManager.SetSelectedAnimeForInfo(ListBoxAnimeWatchlistForUser.SelectedItem);
-            
 
-            if (ListBoxAnimeWatchlistForUser.SelectedItem != null)
+            if (newAnimeListToChooseFrom.SelectedItem != null)
             {
-                var list = _watchlistManager.RetrieveAnimeDetailsGivenUser(ListBoxAnimeWatchlistForUser.SelectedItem.ToString());
+                var list = _watchlistManager.RetrieveAllAnimesForSpecialList(newAnimeListToChooseFrom.SelectedItem.ToString());
+
                 foreach (var item in list)
                 {
                     TextInfoName.Content = $"Rank: {item.Rank}" +
@@ -95,7 +97,26 @@ namespace AnimeWPF
                     $"\nStatus: {item.Status}";
                     TextInfoSum.Text = $"SUMMARY\n{item.Summary}";
                 }
-                Trace.WriteLineIf(ListBoxAnimeWatchlistForUser.SelectedItem.ToString().Contains("BLOG"), $"BLOG was selected");
+                Trace.WriteLineIf(newAnimeListToChooseFrom.SelectedItem.ToString().Contains("BLOG"), $"BLOG was selected");
+            }
+        }
+
+        private void WacthlistSpecificForUser_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            if (WatchlistSpecificForUser.SelectedItem != null)
+            {
+                var list = _watchlistManager.RetrieveAnimeDetailsGivenUser(WatchlistSpecificForUser.SelectedItem.ToString());
+                foreach (var item in list)
+                {
+                    TextInfoName.Content = $"Rank: {item.Rank}" +
+                    $"\nTitle: {item.AnimeName}" +
+                    $"\nGenre: {item.Genre}" +
+                    $"\nEpisode: {item.Episode}" +
+                    $"\nYear: {item.ReleaseYear}" +
+                    $"\nStatus: {item.Status}";
+                    TextInfoSum.Text = $"SUMMARY\n{item.Summary}";
+                }
+                Trace.WriteLineIf(WatchlistSpecificForUser.SelectedItem.ToString().Contains("BLOG"), $"BLOG was selected");
             }
         }
 
@@ -119,8 +140,8 @@ namespace AnimeWPF
             //ListBoxProfile.SelectedItem = _profileManager.SelectedUser;
             //EmptyProfileFields();
         }
-
-        private void ButtonDelete_Click(object sender, RoutedEventArgs e)
+        
+        private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
             ////Delete(string username)
             //_profileManager.Delete(username: TextUsername.Text);
@@ -130,14 +151,6 @@ namespace AnimeWPF
             //PopulateListBox();
             //ListBoxProfile.SelectedItem = _profileManager.SelectedUser;
             //EmptyProfileFields();
-        }
-
-
-
-        
-        private void ButtonAdd_Click(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private void ButtonRemove_Click(object sender, RoutedEventArgs e)
@@ -150,21 +163,7 @@ namespace AnimeWPF
 
         }
 
-        private void ratingsComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void watchedeComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void animeComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-        {
-
-        }
-
+     
         private void ListBoxRating_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
@@ -174,5 +173,6 @@ namespace AnimeWPF
         {
 
         }
+
     }
 }

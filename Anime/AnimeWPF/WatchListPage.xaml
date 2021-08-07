@@ -59,7 +59,7 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <ListBox x:Name="ListBoxAnimeWatchlistForUser" Grid.Row="5" Grid.Column="10" SelectionChanged="AnimeListBoxSummary_SelectionChanged" Grid.ColumnSpan="9" Grid.RowSpan="9" Margin="0,29,0,6" Background="{x:Null}" BorderThickness="5" Padding="0" BorderBrush="#FFD0D7DD" Foreground="#DDFFFFFF">
+            <ListBox x:Name="WatchlistSpecificForUser" Grid.Row="5" Grid.Column="10" SelectionChanged="WacthlistSpecificForUser_SelectionChanged" Grid.ColumnSpan="9" Grid.RowSpan="9" Margin="0,29,0,6" Background="{x:Null}" BorderThickness="5" Padding="0" BorderBrush="#FFD0D7DD" Foreground="#DDFFFFFF">
             </ListBox>
 
 
@@ -141,8 +141,8 @@
 
                 <ListBox x:Name="ratingsListBox" Grid.Row="9" SelectionChanged="ListBoxRating_SelectionChanged" Grid.ColumnSpan="5" Margin="53,22,22,29" Grid.RowSpan="4"  Background="{x:Null}" BorderThickness="5" Padding="0" BorderBrush="#FFD0D7DD" Foreground="#DDFFFFFF" Grid.Column="3"/>
                 <ListBox x:Name="watchedeListBox" Grid.Row="9" SelectionChanged="ListBoxWatched_SelectionChanged" Grid.ColumnSpan="4" Margin="-10,19,26,0" Grid.RowSpan="3"  Background="{x:Null}" BorderThickness="5" Padding="0" BorderBrush="#FFD0D7DD" Foreground="#DDFFFFFF"/>
-                <ListBox x:Name="usernameList" Grid.Row="3" SelectionChanged="ListBoxUsernames_SelectionChanged" Grid.ColumnSpan="7" Margin="-5,27,53,4" Grid.RowSpan="3" Background="{x:Null}" BorderThickness="5" Padding="0" BorderBrush="#FFD0D7DD" Foreground="#DDFFFFFF"/>
-                <ListBox x:Name="animeListBoxSummaryAtBottom" Grid.Row="6" SelectionChanged="AnimeListBoxSummary_SelectionChanged" Grid.ColumnSpan="7" Margin="-5,11,51,24" Grid.RowSpan="4"  Background="{x:Null}" BorderThickness="5" Padding="0" BorderBrush="#FFD0D7DD" Foreground="#DDFFFFFF"/>
+                <ListBox x:Name="usernameList" Grid.Row="3" SelectionChanged="Username_SelectionChanged" Grid.ColumnSpan="7" Margin="-5,27,53,4" Grid.RowSpan="3" Background="{x:Null}" BorderThickness="5" Padding="0" BorderBrush="#FFD0D7DD" Foreground="#DDFFFFFF"/>
+                <ListBox x:Name="newAnimeListToChooseFrom" Grid.Row="6" SelectionChanged="NewAnimeListToChooseFrom_SelectionChanged" Grid.ColumnSpan="7" Margin="-5,11,51,24" Grid.RowSpan="4"  Background="{x:Null}" BorderThickness="5" Padding="0" BorderBrush="#FFD0D7DD" Foreground="#DDFFFFFF"/>
 
 
 

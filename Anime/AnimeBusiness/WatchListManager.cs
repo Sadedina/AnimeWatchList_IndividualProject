@@ -165,19 +165,102 @@ namespace AnimeBusiness
                 return list;
             }
         }
+        public List<UserWatchAnimeInc> RetrieveAllAnimesForSpecialList(string name)
+        {
+            var list = new List<UserWatchAnimeInc>();
+            using (var db = new WatchListContext())
+            {
+                var queryTotal =
+                    from a in db.Animes
+                    where a.AnimeName == name
+                    select new
+                    {
+                        animeId = a.AnimeId,
+                        animeName = a.AnimeName,
+                        genre = a.Genre,
+                        episode = a.Episode,
+                        releaseYear = a.ReleaseYear,
+                        status = a.Status,
+                        rank = a.Rank,
+                        summary = a.Summary
+                    };
+
+                foreach (var item in queryTotal)
+                {
+                    var userWatched = new UserWatchAnimeInc();
+                    userWatched.AnimeId = item.animeId;
+                    userWatched.AnimeName = item.animeName;
+                    userWatched.Genre = item.genre;
+                    userWatched.Episode = item.episode;
+                    userWatched.ReleaseYear = item.releaseYear;
+                    userWatched.Status = item.status;
+                    userWatched.Rank = item.rank;
+                    userWatched.Summary = item.summary;
+
+                    list.Add(userWatched);
+                }
+
+                return list;
+            }
+        }
 
         public List<Anime> RetrieveOtherAnimes(string username)
         {
+            var list = new List<UserWatchAnimeInc>();
             using (var db = new WatchListContext())
             {
-                var findingNeAnime = db.Animes.ToList();
-                var findingUserId = db.Profiles.Where(c => c.Username == username).FirstOrDefault().PersonId;
-                if (db.Watchlists.Where(a => a.PersonId == findingUserId) == null)
+                var queryWatchedAnime =
+                    from w in db.Watchlists
+                    join a in db.Animes on w.AnimeId equals a.AnimeId
+                    join p in db.Profiles on w.PersonId equals p.PersonId
+                    where p.Username == username
+                    select a;
+                var allAnime =
+                    from a in db.Animes select a;
+
+                var animeList = new List<Anime>();
+                foreach (var a in allAnime)
                 {
-                    var findingAnimeId = db.Watchlists.Where(a => a.PersonId == findingUserId).FirstOrDefault().AnimeId;
-                    findingNeAnime = db.Animes.Where(c => c.AnimeId != findingAnimeId).ToList();
+                    animeList.Add(a);
                 }
-                return findingNeAnime;
+
+                var animeWatched = new List<Anime>();
+                foreach (var item in queryWatchedAnime)
+                {
+                    animeWatched.Add(item);
+                }
+
+                /*         Chris's Version
+                var animeNotWatched = new List<Anime>();
+                for (int i = 0; i < animeList.Count; i++)
+                {
+                    bool watched = false;
+                    foreach (var item in animeWatched)
+                    {
+                        if (animeList[i].AnimeId == item.AnimeId)
+                        {
+                            watched = true;
+                        }
+                    }
+                    if (watched == false)
+                    {
+                        animeNotWatched.Add(animeList[i]);
+                    }
+                }*/
+
+                var animeNotWatched = animeList;
+                for (int i = 0; i < animeList.Count; i++)
+                {
+                    foreach (var item in animeWatched)
+                    {
+                        if (animeList[i].AnimeId == item.AnimeId)
+                        {
+                            animeNotWatched.Remove(item);
+                        }
+                    }
+                }
+
+                return animeNotWatched;
             }
         }
 
