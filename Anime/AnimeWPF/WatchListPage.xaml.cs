@@ -17,6 +17,7 @@ namespace AnimeWPF
         private ProfileManager _profileManager = new ProfileManager();
         private string _username;
         private string _anime;
+        private string _animeToDelete;
         private string _watching = "reset";
         private int? _rating = -1;
         public WatchListPage()
@@ -44,6 +45,13 @@ namespace AnimeWPF
 
         }
 
+        private void ResetFieldsOnClick()
+        {
+            _watching = "reset";
+            _rating = -1;
+            TextInfoSum.Text = "";
+            TextInfoName.Content = "";
+        }
 
         private void Username_Populate()
         {
@@ -54,8 +62,8 @@ namespace AnimeWPF
         }
         private void Username_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            TextInfoSum.Text = "";
-            TextInfoName.Content = "";
+            ResetFieldsOnClick();
+            _anime = null;
             WatchlistSpecificForUser.Items.Clear();
             var listBox = (ListBox)sender;
             if (listBox != null && listBox.SelectedValue != null)
@@ -64,6 +72,7 @@ namespace AnimeWPF
                 NewAnimeListToChooseFrom_Populate();
                 WatchlistSpecificForUser_Populate(_username);
             }
+            
         }
         private void NewAnimeListToChooseFrom_Populate()
         {
@@ -75,15 +84,18 @@ namespace AnimeWPF
         }
         private void WatchlistSpecificForUser_Populate(string username)
         {
-            foreach (var item in _watchlistManager.RetrieveAnimeDetailsGivenUsername(username))
+            WatchlistSpecificForUser.Items.Clear();
+            var list = _watchlistManager.RetrieveAnimeDetailsGivenUsername(username);
+
+            foreach (var item in list)
             {
+                //WatchlistSpecificForUser.Items.Add($"Name: {item.AnimeName}\nStatus: {item.Watching}\nRating: {item.Rating}");
                 WatchlistSpecificForUser.Items.Add(item.AnimeName);
             }
         }
         private void NewAnimeListToChooseFrom_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            TextInfoName.Content = "";
-            TextInfoSum.Text = "";
+            ResetFieldsOnClick();
             //_watchlistManager.SetSelectedAnimeForInfo(ListBoxAnimeWatchlistForUser.SelectedItem);
 
             if (newAnimeListToChooseFrom.SelectedItem != null)
@@ -107,6 +119,7 @@ namespace AnimeWPF
 
         private void WacthlistSpecificForUser_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
+            ResetFieldsOnClick();
             if (WatchlistSpecificForUser.SelectedItem != null)
             {
                 var list = _watchlistManager.RetrieveAnimeDetailsGivenUser(WatchlistSpecificForUser.SelectedItem.ToString());
@@ -119,6 +132,8 @@ namespace AnimeWPF
                     $"\nYear: {item.ReleaseYear}" +
                     $"\nStatus: {item.Status}";
                     TextInfoSum.Text = $"SUMMARY\n{item.Summary}";
+                    _anime = item.AnimeName;
+                    _animeToDelete = item.AnimeName;
                 }
                 Trace.WriteLineIf(WatchlistSpecificForUser.SelectedItem.ToString().Contains("BLOG"), $"BLOG was selected");
             }
@@ -128,10 +143,17 @@ namespace AnimeWPF
         {
             if (ratingsListBox.SelectedItem != null)
             {
-                _rating = Convert.ToInt32(((ListBoxItem)ratingsListBox.SelectedValue).Content.ToString());
+                var value = ((ListBoxItem)ratingsListBox.SelectedValue).Content.ToString();
+                if (value == "reset")
+                {
+                    _rating = -1;
+                }
+                else
+                {
+                    _rating = Convert.ToInt32(((ListBoxItem)ratingsListBox.SelectedValue).Content.ToString());
+                }
             }
         }
-
         private void ListBoxWatched_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (watchedeListBox.SelectedItem != null)
@@ -142,25 +164,27 @@ namespace AnimeWPF
 
         private void ButtonUpdate_Click(object sender, RoutedEventArgs e)
         {
-            _watchlistManager.Update(username: _username, animeTitle: _anime, watching: _watching, rating: _rating);
+            _watchlistManager.CreateOrUpdate(username: _username, animeTitle: _anime, watching: _watching, rating: _rating);
+            NewAnimeListToChooseFrom_Populate();
+            WatchlistSpecificForUser_Populate(_username);
         }
         
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
-            ////Delete(string username)
-            //_profileManager.Delete(username: TextUsername.Text);
-
-            //ListBoxProfile.ItemsSource = null;
-            //// put back the screen data
-            //PopulateListBox();
-            //ListBoxProfile.SelectedItem = _profileManager.SelectedUser;
-            //EmptyProfileFields();
+            _watchlistManager.CreateOrUpdate(username: _username, animeTitle: _anime, watching: _watching, rating: _rating);
+            NewAnimeListToChooseFrom_Populate();
+            WatchlistSpecificForUser_Populate(_username);
         }
 
         private void ButtonRemove_Click(object sender, RoutedEventArgs e)
         {
-
+            _watchlistManager.Delete( _username, _animeToDelete);
+            NewAnimeListToChooseFrom_Populate();
+            WatchlistSpecificForUser_Populate(_username);
         }
+
+
+
 
         private void ButtonRequest_Click(object sender, RoutedEventArgs e)
         {

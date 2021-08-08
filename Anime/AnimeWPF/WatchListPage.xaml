@@ -146,7 +146,7 @@
                     <ListBoxItem x:Name="twoStar" Content="2"></ListBoxItem>
                     <ListBoxItem x:Name="oneStar" Content="1"></ListBoxItem>
                     <ListBoxItem x:Name="zeroStar" Content="0"></ListBoxItem>
-                    <ListBoxItem x:Name="resetStar" Content="-1"></ListBoxItem>
+                    <ListBoxItem x:Name="resetStar" Content="reset"></ListBoxItem>
                 </ListBox>
                 <ListBox x:Name="watchedeListBox" Grid.Row="9" SelectionChanged="ListBoxWatched_SelectionChanged" Grid.ColumnSpan="3" Grid.RowSpan="5"  Background="{x:Null}" BorderThickness="5" Padding="-2" BorderBrush="#FFD0D7DD" Foreground="#DDFFFFFF" Margin="-5,21,12,25">
                     <ListBoxItem x:Name="toWatch" Content="To Watch"></ListBoxItem>

@@ -263,63 +263,29 @@ namespace AnimeBusiness
 
         public void CreateOrUpdate(string username, string animeTitle, string watching = null, int? rating = null)
         {
-            if (watching == "reset")
+            if (animeTitle != null)
             {
-                watching = null;
-            }
-            if (rating == -1)
-            {
-                rating = null;
-            }
+                if (watching == "reset") watching = null;
+                if (rating == -1) rating = null;
 
-            using (var db = new WatchListContext())
-            {
-                var findingUserId = db.Profiles.Where(c => c.Username == username).FirstOrDefault().PersonId;
-                int? findingAnimeId = db.Animes.Where(a => a.AnimeName == animeTitle).FirstOrDefault().AnimeId;
-                var animeOfUser = db.Watchlists.Where(w => w.PersonId == findingUserId && w.AnimeId == findingAnimeId).FirstOrDefault();
-
-                if (animeOfUser != null)
+                using (var db = new WatchListContext())
                 {
-                    var newWatchlistDetail = new Watchlist()
-                    {
-                        PersonId = findingUserId,
-                        AnimeId = (int)findingAnimeId,
-                        Rating = rating,
-                        Watching = watching
-                    };
-                    try
-                    {
-                        db.Watchlists.Add(newWatchlistDetail);
-                        db.SaveChanges();
-                    }
-                    catch (Exception e)
-                    {
-                        Debug.WriteLine($"Error updating {username} watchlists");
-                    }
-                }
-                else
-                {                 
-                    if (animeOfUser != null)
-                    {
-                        Debug.WriteLine($"Username {username} has not put {animeTitle} in their watchlist");
-                    }
-                    animeOfUser.Watching = watching;
-                    animeOfUser.Rating = rating;
+                    var findingUserId = db.Profiles.Where(c => c.Username == username).FirstOrDefault().PersonId;
+                    int? findingAnimeId = db.Animes.Where(a => a.AnimeName == animeTitle).FirstOrDefault().AnimeId;
+                    var animeOfUser = db.Watchlists.Where(w => w.PersonId == findingUserId && w.AnimeId == findingAnimeId).FirstOrDefault();
 
-                    // write changes to database
-                    try
+                    if (animeOfUser == null)
                     {
-                        db.SaveChanges();
-                        SelectedWatchlist = animeOfUser;
+                        Create(username, animeTitle, watching, rating);
                     }
-                    catch (Exception e)
+                    else
                     {
-                        Debug.WriteLine($"Error updating {username}");
+                        Update(username, animeTitle, watching, rating);
                     }
                 }
             }
+            
         }
-
 
         public void Create(string username, string animeTitle, string watching = null, int? rating = null)
         {
@@ -353,6 +319,9 @@ namespace AnimeBusiness
                 }
                 var toUpdateWatchlist = db.Watchlists.Where(c => c.PersonId == findingUserId && c.AnimeId == findingAnimeId).FirstOrDefault();
 
+
+                //toUpdateWatchlist.PersonId = findingUserId;
+                //toUpdateWatchlist.AnimeId = (int)findingAnimeId;
                 toUpdateWatchlist.Watching = watching;
                 toUpdateWatchlist.Rating = rating;
 
@@ -373,15 +342,19 @@ namespace AnimeBusiness
 
         public bool Delete(string username, string animeTitle)
         {
-            using (var db = new WatchListContext())
+            if (animeTitle != null)
             {
-                var findingUserId = db.Profiles.Where(c => c.Username == username).FirstOrDefault().PersonId;
-                var findingAnimeId = db.Animes.Where(a => a.AnimeName == animeTitle).FirstOrDefault().AnimeId;
+                using (var db = new WatchListContext())
+                {
+                    var findingUserId = db.Profiles.Where(c => c.Username == username).FirstOrDefault().PersonId;
+                    var findingAnimeId = db.Animes.Where(a => a.AnimeName == animeTitle).FirstOrDefault().AnimeId;
 
-                var delWatchlist = db.Watchlists.Where(c => c.PersonId == findingUserId && c.AnimeId == findingAnimeId).FirstOrDefault();
+                    var delWatchlist = db.Watchlists.Where(c => c.PersonId == findingUserId && c.AnimeId == findingAnimeId).FirstOrDefault();
 
-                db.Watchlists.RemoveRange(delWatchlist);
-                db.SaveChanges();
+                    db.Watchlists.RemoveRange(delWatchlist);
+                    db.SaveChanges();
+                }
+                
             }
             return true;
         }

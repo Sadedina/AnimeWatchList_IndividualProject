@@ -55,13 +55,13 @@ namespace AnimeBusiness
              */
 
             var newWatchlist = new WatchListManager();
-            newWatchlist.Update(username: "Assassin", animeTitle: "Fullmetal Alchemist: Brotherhood", watching: "Watching", rating: 4);
-            newWatchlist.Update(username: "Assassin", animeTitle: "Parasyte: The Maxim", rating: 4);
-            newWatchlist.Update(username: "Assassin", animeTitle: "Attack on Titan");
-            newWatchlist.Update(username: "Assassin", animeTitle: "Hunter x Hunter", watching: "Not Watched");
-            newWatchlist.Update(username: "ItsYaBoiTak", animeTitle: "Attack on Titan");
-            newWatchlist.Update(username: "Atchu", animeTitle: "My Hero Academia", rating: 4);
-            newWatchlist.Update(username: "Atchu", animeTitle: "My Hero Academia", rating: 3, watching: "Watched");
+            newWatchlist.CreateOrUpdate(username: "Assassin", animeTitle: "Fullmetal Alchemist: Brotherhood", watching: "Watching", rating: 4);
+            newWatchlist.CreateOrUpdate(username: "Assassin", animeTitle: "Parasyte: The Maxim", rating: 4);
+            newWatchlist.CreateOrUpdate(username: "Assassin", animeTitle: "Attack on Titan");
+            newWatchlist.CreateOrUpdate(username: "Assassin", animeTitle: "Hunter x Hunter", watching: "Not Watched");
+            newWatchlist.CreateOrUpdate(username: "ItsYaBoiTak", animeTitle: "Attack on Titan");
+            newWatchlist.CreateOrUpdate(username: "Atchu", animeTitle: "My Hero Academia", rating: 4);
+            newWatchlist.CreateOrUpdate(username: "Atchu", animeTitle: "My Hero Academia", rating: 3, watching: "Watched");
         }
     }
 }
