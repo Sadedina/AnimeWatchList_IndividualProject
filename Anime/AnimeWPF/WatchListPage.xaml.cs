@@ -16,6 +16,9 @@ namespace AnimeWPF
         private AnimeManager _animeManager = new AnimeManager();
         private ProfileManager _profileManager = new ProfileManager();
         private string _username;
+        private string _anime;
+        private string _watching = "reset";
+        private int? _rating = -1;
         public WatchListPage()
         {
             InitializeComponent();
@@ -96,6 +99,7 @@ namespace AnimeWPF
                     $"\nYear: {item.ReleaseYear}" +
                     $"\nStatus: {item.Status}";
                     TextInfoSum.Text = $"SUMMARY\n{item.Summary}";
+                    _anime = item.AnimeName;
                 }
                 Trace.WriteLineIf(newAnimeListToChooseFrom.SelectedItem.ToString().Contains("BLOG"), $"BLOG was selected");
             }
@@ -120,25 +124,25 @@ namespace AnimeWPF
             }
         }
 
+        private void ListBoxRating_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (ratingsListBox.SelectedItem != null)
+            {
+                _rating = Convert.ToInt32(((ListBoxItem)ratingsListBox.SelectedValue).Content.ToString());
+            }
+        }
 
-
+        private void ListBoxWatched_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (watchedeListBox.SelectedItem != null)
+            {
+                _watching = ((ListBoxItem)watchedeListBox.SelectedValue).Content.ToString();
+            }
+        }
 
         private void ButtonUpdate_Click(object sender, RoutedEventArgs e)
         {
-            ////Update(string oldUsername, string username, string firstName, string lastName, int age, string country)
-            //_profileManager.Update(
-            //    oldUsername: _oldUsername
-            //    , username: TextUsername.Text
-            //    , firstName: TextFirstName.Text
-            //    , lastName: TextLastName.Text
-            //    , age: Convert.ToInt32(TextAge.Text)
-            //    , country: TextCountry.Text);
-
-            //ListBoxProfile.ItemsSource = null;
-            //// put back the screen data
-            //PopulateListBox();
-            //ListBoxProfile.SelectedItem = _profileManager.SelectedUser;
-            //EmptyProfileFields();
+            _watchlistManager.Update(username: _username, animeTitle: _anime, watching: _watching, rating: _rating);
         }
         
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
@@ -164,15 +168,7 @@ namespace AnimeWPF
         }
 
      
-        private void ListBoxRating_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
 
-        }
-
-        private void ListBoxWatched_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
 
     }
 }
