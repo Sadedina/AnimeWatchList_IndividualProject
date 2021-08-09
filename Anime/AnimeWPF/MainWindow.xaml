@@ -11,8 +11,12 @@
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="MainWindow" Height="600" Width="1200" Background="Black" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
-    
+        Title="MainWindow" Height="600" Width="1200" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+
+    <Window.Background >
+        <ImageBrush  ImageSource="/Hai1.jpg"/>
+    </Window.Background>
+
     <Grid>
         <Grid>
             <Grid.RowDefinitions>
@@ -59,7 +63,7 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <ListBox x:Name="ListBoxProfile" Grid.Row="5" Grid.Column="10" SelectionChanged="ListBoxProfile_SelectionChanged" Grid.ColumnSpan="9" Grid.RowSpan="11" Background="{x:Null}" BorderThickness="5" Padding="0" BorderBrush="#FFD0D7DD" Foreground="#DDFFFFFF"></ListBox>
+            <ListBox x:Name="ListBoxProfile" Grid.Row="5" Grid.Column="10" SelectionChanged="ListBoxProfile_SelectionChanged" Grid.ColumnSpan="9" Grid.RowSpan="11" Background="Black" BorderThickness="5" Padding="0" BorderBrush="#FFC7C7C7" Foreground="#DDFFFFFF" Opacity="0.8"></ListBox>
             <Grid Grid.Column= "1" Grid.Row="0" Grid.ColumnSpan="20" Grid.RowSpan="20" Margin="0,0,-40,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
@@ -106,17 +110,17 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <Label x:Name="LabelUsername" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="5" Grid.RowSpan="1" FontWeight="Bold" Foreground="#DDFFFFFF" FontFamily="Arial">Username</Label>
-                <Label x:Name="LabelFirstName" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="5" Grid.RowSpan="1" FontWeight="Bold" Foreground="#DDFFFFFF" FontFamily="Arial">First Name</Label>
+                <Label x:Name="LabelUsername" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="5" Grid.RowSpan="1" FontWeight="Bold" Foreground="#DDFFFFFF" FontFamily="Arial" >Username</Label>
+                <Label x:Name="LabelFirstName" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="5" Grid.RowSpan="1" FontWeight="Bold" Foreground="#DDFFFFFF" FontFamily="Arial" >First Name</Label>
                 <Label x:Name="LabelLastName" Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="5" Grid.RowSpan="1" FontWeight="Bold" Foreground="#DDFFFFFF" FontFamily="Arial">Last Name</Label>
                 <Label x:Name="LabelAge" Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="5" Grid.RowSpan="1" FontWeight="Bold" Foreground="#DDFFFFFF" FontFamily="Arial">Age</Label>
                 <Label x:Name="LabelCountry" Grid.Row="13" Grid.Column="0" Grid.ColumnSpan="5" Grid.RowSpan="1" FontWeight="Bold" Foreground="#DDFFFFFF" FontFamily="Arial">Country</Label>
 
-                <TextBox x:Name="TextUsername" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="7" Grid.RowSpan="1" Background="#FFC7C7C7" CaretBrush="{x:Null}" SelectionBrush="{x:Null}" SelectionTextBrush="#FFC7C7C7"></TextBox>
-                <TextBox x:Name="TextFirstName" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="7" Grid.RowSpan="1" Background="#FFC7C7C7" CaretBrush="{x:Null}" SelectionBrush="{x:Null}" SelectionTextBrush="#FFC7C7C7"></TextBox>
-                <TextBox x:Name="TextLastName" Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="7" Grid.RowSpan="1" Background="#FFC7C7C7" CaretBrush="{x:Null}" SelectionBrush="{x:Null}" SelectionTextBrush="#FFC7C7C7"></TextBox>
-                <TextBox x:Name="TextAge" Grid.Row="12" Grid.Column="0" Grid.ColumnSpan="7" Grid.RowSpan="1" Background="#FFC7C7C7" CaretBrush="{x:Null}" SelectionBrush="{x:Null}" SelectionTextBrush="#FFC7C7C7"></TextBox>
-                <TextBox x:Name="TextCountry" Grid.Row="14" Grid.Column="0" Grid.ColumnSpan="7" Grid.RowSpan="1" Background="#FFC7C7C7" CaretBrush="{x:Null}" SelectionBrush="{x:Null}" SelectionTextBrush="#FFC7C7C7"></TextBox>
+                <TextBox x:Name="TextUsername" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="7" Grid.RowSpan="1" Background="Black" CaretBrush="{x:Null}" SelectionBrush="{x:Null}" SelectionTextBrush="#FFC7C7C7" BorderBrush="#FFC7C7C7" Foreground="White" Opacity="0.8"></TextBox>
+                <TextBox x:Name="TextFirstName" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="7" Grid.RowSpan="1" Background="Black" CaretBrush="{x:Null}" SelectionBrush="{x:Null}" SelectionTextBrush="#FFC7C7C7" BorderBrush="#FFC7C7C7" Foreground="White" Opacity="0.8"></TextBox>
+                <TextBox x:Name="TextLastName" Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="7" Grid.RowSpan="1" Background="Black" CaretBrush="{x:Null}" SelectionBrush="{x:Null}" SelectionTextBrush="#FFC7C7C7" BorderBrush="#FFC7C7C7" Foreground="White" Opacity="0.8"></TextBox>
+                <TextBox x:Name="TextAge" Grid.Row="12" Grid.Column="0" Grid.ColumnSpan="7" Grid.RowSpan="1" Background="Black" CaretBrush="{x:Null}" SelectionBrush="{x:Null}" SelectionTextBrush="#FFC7C7C7" BorderBrush="#FFC7C7C7" Foreground="White" Opacity="0.8"></TextBox>
+                <TextBox x:Name="TextCountry" Grid.Row="14" Grid.Column="0" Grid.ColumnSpan="7" Grid.RowSpan="1" Background="Black" CaretBrush="{x:Null}" SelectionBrush="{x:Null}" SelectionTextBrush="#FFC7C7C7" BorderBrush="#FFC7C7C7" Foreground="White" Opacity="0.8"></TextBox>
 
                 
                 

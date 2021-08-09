@@ -126,7 +126,8 @@ namespace AnimeBusiness
                     from w in db.Watchlists
                     join a in db.Animes on w.AnimeId equals a.AnimeId
                     join p in db.Profiles on w.PersonId equals p.PersonId
-                    where a.AnimeName == name
+                    where name.Contains(a.AnimeName)
+                    //where a.AnimeName == name
                     select new
                     {
                         personId = p.PersonId,

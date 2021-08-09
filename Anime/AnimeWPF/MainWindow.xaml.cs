@@ -20,11 +20,13 @@ namespace AnimeWPF
 
         private void ButtonHome_Click(object sender, RoutedEventArgs e)
         {
-
+            StartPage startPage = new StartPage();
+            startPage.Show();
+            this.Close();
         }
         private void ButtonUser_Click(object sender, RoutedEventArgs e)
         {
-
+            //User is on this Window
         }
         private void ButtonWatchlist_Click(object sender, RoutedEventArgs e)
         {
@@ -34,7 +36,7 @@ namespace AnimeWPF
         }
         private void ButtonRecomendation_Click(object sender, RoutedEventArgs e)
         {
-
+            MessageBox.Show("Recommendation Feature Comming Soon", "Recomendation", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
 

@@ -7,11 +7,31 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="ace1.jpg" />
+    <None Remove="anime3.png" />
+    <None Remove="Hai1.jpg" />
+    <None Remove="One.jpg" />
+    <None Remove="One1.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MaterialDesignThemes" Version="4.1.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\AnimeBusiness\AnimeBusiness.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Background\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="ace1.jpg" />
+    <Resource Include="anime3.png" />
+    <Resource Include="Hai1.jpg" />
+    <Resource Include="One.jpg" />
+    <Resource Include="One1.jpg" />
   </ItemGroup>
 
 </Project>

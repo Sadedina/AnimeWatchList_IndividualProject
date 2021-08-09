@@ -28,21 +28,24 @@ namespace AnimeWPF
 
         private void ButtonHome_Click(object sender, RoutedEventArgs e)
         {
-
+            StartPage startPage = new StartPage();
+            startPage.Show();
+            this.Close();
         }
         private void ButtonUser_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWindowPage = new MainWindow();
-            mainWindowPage.Show();
+            MainWindow userPage = new MainWindow();
+            userPage.Show();
             this.Close();
+            
         }
         private void ButtonWatchlist_Click(object sender, RoutedEventArgs e)
         {
-            
+            //User is on this Window
         }
         private void ButtonRecomendation_Click(object sender, RoutedEventArgs e)
         {
-
+            MessageBox.Show("Recommendation Feature Comming Soon", "Recomendation", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void ResetFieldsOnClick()
@@ -89,8 +92,8 @@ namespace AnimeWPF
 
             foreach (var item in list)
             {
-                //WatchlistSpecificForUser.Items.Add($"Name: {item.AnimeName}\nStatus: {item.Watching}\nRating: {item.Rating}");
-                WatchlistSpecificForUser.Items.Add(item.AnimeName);
+                WatchlistSpecificForUser.Items.Add($"Name: {item.AnimeName}\nStatus: {item.Watching}\nRating: {item.Rating}");
+                //WatchlistSpecificForUser.Items.Add(item.AnimeName);
             }
         }
         private void NewAnimeListToChooseFrom_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -182,9 +185,6 @@ namespace AnimeWPF
             NewAnimeListToChooseFrom_Populate();
             WatchlistSpecificForUser_Populate(_username);
         }
-
-
-
 
         private void ButtonRequest_Click(object sender, RoutedEventArgs e)
         {
