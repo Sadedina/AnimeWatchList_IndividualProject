@@ -50,8 +50,8 @@ namespace AnimeWPF
 
         private void ResetFieldsOnClick()
         {
-            _watching = "reset";
-            _rating = -1;
+            //_watching = "restart";
+            //_rating = -2;
             TextInfoSum.Text = "";
             TextInfoName.Content = "";
         }
@@ -99,10 +99,13 @@ namespace AnimeWPF
         private void NewAnimeListToChooseFrom_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ResetFieldsOnClick();
-            //_watchlistManager.SetSelectedAnimeForInfo(ListBoxAnimeWatchlistForUser.SelectedItem);
+
 
             if (newAnimeListToChooseFrom.SelectedItem != null)
             {
+                _watching = "reset";
+                _rating = -1; 
+
                 var list = _watchlistManager.RetrieveAllAnimesForSpecialList(newAnimeListToChooseFrom.SelectedItem.ToString());
 
                 foreach (var item in list)
@@ -167,14 +170,16 @@ namespace AnimeWPF
 
         private void ButtonUpdate_Click(object sender, RoutedEventArgs e)
         {
-            _watchlistManager.CreateOrUpdate(username: _username, animeTitle: _anime, watching: _watching, rating: _rating);
+            _watchlistManager.CreateOrUpdateRating(username: _username, animeTitle: _anime, rating: _rating);
+            _watchlistManager.CreateOrUpdateWatching(username: _username, animeTitle: _anime, watching: _watching);
             NewAnimeListToChooseFrom_Populate();
             WatchlistSpecificForUser_Populate(_username);
         }
         
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
-            _watchlistManager.CreateOrUpdate(username: _username, animeTitle: _anime, watching: _watching, rating: _rating);
+            _watchlistManager.CreateOrUpdateRating(username: _username, animeTitle: _anime, rating: _rating);
+            _watchlistManager.CreateOrUpdateWatching(username: _username, animeTitle: _anime, watching: _watching);
             NewAnimeListToChooseFrom_Populate();
             WatchlistSpecificForUser_Populate(_username);
         }
@@ -188,7 +193,7 @@ namespace AnimeWPF
 
         private void ButtonRequest_Click(object sender, RoutedEventArgs e)
         {
-
+            MessageBox.Show("Request for Anime Feature Comming Soon", "Request", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
      

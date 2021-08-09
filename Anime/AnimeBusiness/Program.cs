@@ -54,14 +54,14 @@ namespace AnimeBusiness
                     JOIN Animes ON Watchlists.AnimeID = Animes.AnimeID;
              */
 
-            var newWatchlist = new WatchListManager();
-            newWatchlist.CreateOrUpdate(username: "Assassin", animeTitle: "Fullmetal Alchemist: Brotherhood", watching: "Watching", rating: 4);
-            newWatchlist.CreateOrUpdate(username: "Assassin", animeTitle: "Parasyte: The Maxim", rating: 4);
-            newWatchlist.CreateOrUpdate(username: "Assassin", animeTitle: "Attack on Titan");
-            newWatchlist.CreateOrUpdate(username: "Assassin", animeTitle: "Hunter x Hunter", watching: "Not Watched");
-            newWatchlist.CreateOrUpdate(username: "ItsYaBoiTak", animeTitle: "Attack on Titan");
-            newWatchlist.CreateOrUpdate(username: "Atchu", animeTitle: "My Hero Academia", rating: 4);
-            newWatchlist.CreateOrUpdate(username: "Atchu", animeTitle: "My Hero Academia", rating: 3, watching: "Watched");
+            //var newWatchlist = new WatchListManager();
+            //newWatchlist.CreateOrUpdate(username: "Assassin", animeTitle: "Fullmetal Alchemist: Brotherhood", watching: "Watching", rating: 4);
+            //newWatchlist.CreateOrUpdate(username: "Assassin", animeTitle: "Parasyte: The Maxim", rating: 4);
+            //newWatchlist.CreateOrUpdate(username: "Assassin", animeTitle: "Attack on Titan");
+            //newWatchlist.CreateOrUpdate(username: "Assassin", animeTitle: "Hunter x Hunter", watching: "Not Watched");
+            //newWatchlist.CreateOrUpdate(username: "ItsYaBoiTak", animeTitle: "Attack on Titan");
+            //newWatchlist.CreateOrUpdate(username: "Atchu", animeTitle: "My Hero Academia", rating: 4);
+            //newWatchlist.CreateOrUpdate(username: "Atchu", animeTitle: "My Hero Academia", rating: 3, watching: "Watched");
         }
     }
 }
