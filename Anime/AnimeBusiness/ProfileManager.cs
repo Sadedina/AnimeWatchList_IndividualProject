@@ -117,13 +117,16 @@ namespace AnimeBusiness
                 var hasWatchlist = db.Watchlists.Where(c => c.PersonId == idOfProfile).FirstOrDefault();
                 var number = db.Watchlists.Where(c => c.PersonId == idOfProfile).Count();
 
-                while (number > 0)
+                if (hasWatchlist != null)
                 {
-                    db.Watchlists.RemoveRange(hasWatchlist);
-                    db.SaveChanges();
-                    number = db.Watchlists.Where(c => c.PersonId == idOfProfile).Count();
+                    while (hasWatchlist != null)
+                    {
+                        db.Watchlists.RemoveRange(hasWatchlist);
+                        db.SaveChanges();
+                        hasWatchlist = db.Watchlists.Where(c => c.PersonId == idOfProfile).FirstOrDefault();
+                    }
                 }
-
+                
                 db.Profiles.RemoveRange(profileID);
                 db.SaveChanges();
             }
