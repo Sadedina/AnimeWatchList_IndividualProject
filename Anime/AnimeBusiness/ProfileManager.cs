@@ -24,7 +24,6 @@ namespace AnimeBusiness
                 return db.Profiles.ToList();
             }
         }
-
         public List<string> RetrieveUsername()
         {
             using (var db = new WatchListContext())
@@ -32,7 +31,6 @@ namespace AnimeBusiness
                 return db.Profiles.Select(c => c.Username).ToList();
             }
         }
-
         public string RetrieveUserId(string username)
         {
             using (var db = new WatchListContext())

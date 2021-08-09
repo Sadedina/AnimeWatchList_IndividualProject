@@ -104,7 +104,7 @@ namespace AnimeWPF
             if (newAnimeListToChooseFrom.SelectedItem != null)
             {
                 _watching = "reset";
-                _rating = -1; 
+                _rating = -1;
 
                 var list = _watchlistManager.RetrieveAllAnimesForSpecialList(newAnimeListToChooseFrom.SelectedItem.ToString());
 

@@ -66,7 +66,6 @@ namespace AnimeBusiness
 
         ///////////////////////////// USED FOR ADDING ANIMES INTO DATABASE
         ///// not needed for application
-        
         public bool Update(string animeName, string genre = null, string type = null, int? episode = null, int? releaseYear = null, string status = null, string language = null, int? restriction = null, int? rank = null, string summary = null)
         {
             using (var db = new WatchListContext())

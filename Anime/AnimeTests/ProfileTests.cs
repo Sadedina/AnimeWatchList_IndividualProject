@@ -24,6 +24,23 @@ namespace AnimeTests
         }
 
         [Test]
+        public void WhenProfileIDIsGiven_RetrieveUsername_ReturnsUsername()
+        {
+            using (var db = new WatchListContext())
+            {
+
+                db.AddRange(new Profile { PersonId = "MANDA", Username = "manda89", FirstName = "Nishant", LastName = "Manda", Age = 31, Country = "UK" });
+                db.SaveChanges();
+
+                var testProfile = new ProfileManager();
+                var result = testProfile.RetrieveUserId("manda89");
+
+                Assert.That(result, Is.EqualTo("MANDA"));
+            }
+        }
+
+
+        [Test]
         public void WhenANewProfileIsCreated_TheNumberOfProfilesIncreasesBy1()
         {
             using (var db = new WatchListContext())

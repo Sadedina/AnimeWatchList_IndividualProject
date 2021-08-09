@@ -11,13 +11,12 @@ namespace AnimeBusiness
     public class WatchListManager
     {
         public Watchlist SelectedWatchlist { get; set; }
+        public UserWatchAnimeInc SelectedAnimeRetriveAll { get; set; }
 
         public void SetSelectedWatchlist(object selectedWatchlist)
         {
             SelectedWatchlist = (Watchlist)selectedWatchlist;
         }
-
-        public UserWatchAnimeInc SelectedAnimeRetriveAll { get; set; }
         public void SetSelectedAnimeForInfo(object item)
         {
             SelectedAnimeRetriveAll = (UserWatchAnimeInc)item;
@@ -262,6 +261,11 @@ namespace AnimeBusiness
             }
         }
 
+
+
+
+
+
         public void CreateOrUpdateRating(string username, string animeTitle, int? rating)
         {
             if (animeTitle != null)
@@ -402,7 +406,6 @@ namespace AnimeBusiness
             }
             return true;
         }
-
 
         public bool Delete(string username, string animeTitle)
         {
