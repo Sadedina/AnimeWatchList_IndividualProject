@@ -1,11 +1,7 @@
-﻿using AnimeData;
+﻿using AnimeBusiness;
+using AnimeData;
 using NUnit.Framework;
-using AnimeBusiness;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AnimeTests
 {

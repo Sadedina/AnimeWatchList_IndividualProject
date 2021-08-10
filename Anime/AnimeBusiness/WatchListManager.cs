@@ -313,6 +313,25 @@ namespace AnimeBusiness
             }
         }
 
+
+        public void Create(string username, string animeTitle, string watching = null, int? rating = null)
+        {
+            using (var db = new WatchListContext())
+            {
+                var findingUserId = db.Profiles.Where(c => c.Username == username).FirstOrDefault().PersonId;
+                var findingAnimeId = db.Animes.Where(a => a.AnimeName == animeTitle).FirstOrDefault().AnimeId;
+                var newWatchlistDetail = new Watchlist()
+                {
+                    PersonId = findingUserId,
+                    AnimeId = findingAnimeId,
+                    Rating = rating,
+                    Watching = watching
+                };
+                db.Watchlists.Add(newWatchlistDetail);
+                db.SaveChanges();
+            }
+        }
+
         public void CreateRating(string username, string animeTitle, int? rating)
         {
             using (var db = new WatchListContext())
