@@ -2,8 +2,6 @@
 using AnimeData;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Diagnostics;
 
 namespace AnimeBusiness
@@ -91,7 +89,7 @@ namespace AnimeBusiness
                     db.SaveChanges();
                     SelectedUser = profileID;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     Debug.WriteLine($"Error updating {username}");
                     return false;
@@ -113,18 +111,14 @@ namespace AnimeBusiness
                 
                 var idOfProfile = db.Profiles.Where(c => c.Username == username).FirstOrDefault().PersonId;
                 var hasWatchlist = db.Watchlists.Where(c => c.PersonId == idOfProfile).FirstOrDefault();
-                var number = db.Watchlists.Where(c => c.PersonId == idOfProfile).Count();
 
-                if (hasWatchlist != null)
+                while (hasWatchlist != null)
                 {
-                    while (hasWatchlist != null)
-                    {
-                        db.Watchlists.RemoveRange(hasWatchlist);
-                        db.SaveChanges();
-                        hasWatchlist = db.Watchlists.Where(c => c.PersonId == idOfProfile).FirstOrDefault();
-                    }
+                    db.Watchlists.RemoveRange(hasWatchlist);
+                    db.SaveChanges();
+                    hasWatchlist = db.Watchlists.Where(c => c.PersonId == idOfProfile).FirstOrDefault();
                 }
-                
+
                 db.Profiles.RemoveRange(profileID);
                 db.SaveChanges();
             }

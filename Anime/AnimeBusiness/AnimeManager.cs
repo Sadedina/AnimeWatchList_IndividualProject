@@ -2,8 +2,6 @@
 using AnimeData;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Diagnostics;
 
 namespace AnimeBusiness
@@ -11,19 +9,6 @@ namespace AnimeBusiness
     public class AnimeManager
     {
         public Anime SelectedAnime { get; set; }
-
-        public void SetSelectedAnime(object selectedAnime)
-        {
-            SelectedAnime = (Anime)selectedAnime;
-        }
-
-        public List<Anime> RetrieveAll()
-        {
-            using (var db = new WatchListContext())
-            {
-                return db.Animes.ToList();
-            }
-        }
 
         public string RetrieveAnimeName(int animeNameId)
         {
@@ -94,7 +79,7 @@ namespace AnimeBusiness
                     db.SaveChanges();
                     SelectedAnime = toUpdateAnime;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     Debug.WriteLine($"Error updating {animeName}");
                     return false;
@@ -102,6 +87,7 @@ namespace AnimeBusiness
             }
             return true;
         }
+        
         public bool Delete(string animeName)
         {
             using (var db = new WatchListContext())
