@@ -1,6 +1,6 @@
 ﻿using System;
 using AnimeData;
-using System.Collections.Generic;
+using AnimeData.Services;
 using System.Linq;
 using System.Diagnostics;
 
@@ -8,6 +8,7 @@ namespace AnimeBusiness
 {
     public class AnimeManager
     {
+        private IAnimeServices
         public Anime SelectedAnime { get; set; }
 
         public string RetrieveAnimeName(int animeNameId)
@@ -34,18 +35,15 @@ namespace AnimeBusiness
                 ,Summary = summary
             };
 
-            using (var db = new WatchListContext())
+            var toAddAnime = AnimeService.GetAnimeById(newAnime);
+            if (toAddAnime == null)
             {
-                var toAddAnime = db.Animes.Where(c => c.AnimeName == animeName).FirstOrDefault();
-                if (toAddAnime == null)
-                {
-                    db.Animes.Add(newAnime);
-                    db.SaveChanges();
-                }
-                else
-                {
-                    throw new Exception("Anime with username already exist!");
-                }
+                db.Animes.Add(newAnime);
+                db.SaveChanges();
+            }
+            else
+            {
+                throw new Exception("Anime with username already exist!");
             }
         }
 
