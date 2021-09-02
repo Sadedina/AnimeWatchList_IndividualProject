@@ -231,6 +231,38 @@ I will keep the same workload as I performed well during todays sprint.
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ### Sprint 4
 
 [Friday - Saturday]
@@ -293,55 +325,101 @@ I reduce the amount of workload done in the next sprint in order to set myself a
 
 ##### Kanban Board at the start
 
-![Start Sprint Kanban Board](https://github.com/Sadedina/AnimeWatchList_IndividualProject/blob/main/Images/Sprint%20morning%2008-08.JPG)
+![Start Sprint Kanban Board](https://github.com/Sadedina/AnimeWatchList_IndividualProject/blob/main/Images/Sprint%20morning%2006-08.JPG)
 
 ##### Kanban Board at the end
 
-![End Sprint Kanban Board](https://github.com/Sadedina/AnimeWatchList_IndividualProject/blob/main/Images/Sprint%20evening%2008-08.JPG)
+![End Sprint Kanban Board]()
 
 ##### Sprint Review
 
-In this sprint, I eventually manage to finish all the sprints I set for myself. However, I ran into the biggest blocker yet. And I was only able to solve the issue by relying on the help of more experienced developers. who walked me through the feature I was trying to implement. Additionally, I ran into the issue of not understanding what my code was doing as I did not have a clear name for the features and methods I was implementing. Discussion below will walk through the ways I tackled them.
+In this sprint, I manage to finish all of my sprints backlog set. Most of my User stories are in the review section as I have not refactored and tested all of my codes, which are essential for defining my User Stories as done
 
 The user stories completed:
 
-- Remove from watchlist
-- Add and Update Rating feature
-- Add and Update Watch feature
-- Show Watch and Rating feature on Watchlists
-- Remove Rating and Watch feature
+- Adding data into the Anime table
+
+The User Stories under review:
+
+- Register User through WPF
+- Update User
+- Display Username
+- Unique Username
+- Delete User
 
 ### Sprint Retrospective
 
-##### Mood: 2/10
+##### Mood: 7/10
 
-Today has been the worse day in terms of mood. This is due to the work I was doing, where features I was trying to implement would not work and I spent mo9st of the day on the same problem as there was nothing else I could do. this is because the feature was important and other user stories relied on its functionality.
+Whilst completing the project during the day, my mood was above average. I knew exactly what to do and how to implement the code. Therefore, I just got on with my work. It was not very smooth as I did have problem implementing some of the GUI
 
 ##### Time Management: 3/3
 
-My time management was poor. I did not manage to progress much for must of the day and then had to work longer hours in order to finish the task set in the sprint. I should have asked for help earlier on in the day rather than trying to work through it. This majorly slowed my progress overall and affected my mood for the rest of the day.
+My time management was excellent today. I manage to finish everything that I set myself for the day.
 
 #####  Work load: 3/3
 
-The workload set was too much. However, as this was sprint 5, I wanted to finish most of the work today so that I ca give myself a better chance to do more implementation as well as concentrate into making the GUI look presentable and professional.
+The workload set was just enough. I did not have time to add comments or refactor my code. However, I accomplished a big part of the project. 
 
 ##### Blockers: 3/3
 
-In the current Sprint there were two main blockers:
-
-The first issue was my naming convention for the methods were to similar. This is because they did similar stuff. I kept running into the issue of not knowing what the application did and having to rename it into something more distinct. However, this did not help as it was getting more and more confusing. To the point were bugs were being introduced and I did not know how to solve it.
-
-This was resolved by creating a schematic of the Watchlist page and naming them on the paper. therefore, when I needed to write a code for a particular method. I knew I could just look it up on the diagram I drew, which made me code a lot quicker and less confused.
-
-The Second issue was trying to show the Users watchlist as well as the Anime's the user has to choose from. The reason I spent most of the day working through this problem and then resorting to asking for help from my peers, is because the watchlist table is composed of two primary key acting as composite, which were foreign key for the other tables. I needed to join the Profile table, with the Watchlist table and finally with the Anime Table. This is because I only have access to the Username of the User and the name of the Anime the want to perform an action with.
-
-Therefore, I need the inner joins of the table, such that those information can be found. This was solved by creating a class with all the column name, which acted like a big table, where I can easily find information. Consequently, I had to perform two queries every time I needed information, which was not present directly in the Watchlist table.
-
-This issue was solved at the end of the day.
+In the current Sprint there were no major blockers. I mainly was going through the process of designing my GUI according to the Wireframe
 
 ##### Next Step
 
-I will keep the sprint workload light as it is a weekend and I want to give myself time to relax and think through what I am doing.
+I will keep the same workload as I performed well during todays sprint.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -359,15 +437,13 @@ I will keep the sprint workload light as it is a weekend and I want to give myse
 
 ##### Sprint Review
 
-In this sprint, I was able to add a background layer to the GIU in preparation of the presentation. I was also able to implement the Update function for the Watching and Rating feature, which I noticed was bugged. Finally, I implemented the remove button to remove anime from users watchlist. This implements a Create and Update functionality at the same time. A pop up button was implemented to display to the user that current features were not enabled in this application.
+In this sprint, I was able to add a background layer to the GIU in preparation of the presentation. I was also able to implement the Update function for the Watching and Rating feature. Finally, I implemented the remove button to remove anime from users watchlist. A pop up button was implemented to display to the user that current features were not enabled in this application.
 
-Upon reviewing the applications I implemented, I removed the following features:
+Upon reviewing the application, I implemented I removed the following features:
 
 - Pop up button for Updates, Deletes and Register. 
 
   This is because I found it very annoying as a consumer to be alerted all the time that I was doing an action on the application. which resulted in slowing down the process when using it.
-  
-- Display Home feature to navigate from
 
 ### Sprint Retrospective
 
@@ -429,14 +505,6 @@ The was no choice in the amount of workload. As deadline is approaching. But ove
 There were no blockers in todays sprint
 
 
-
-#### Application pages
-
-The image below shows the final result of how the application looks like
-
-![UserPage](https://github.com/Sadedina/AnimeWatchList_IndividualProject/blob/main/Images/UserPage.JPG)
-
-![Watchlist Page](https://github.com/Sadedina/AnimeWatchList_IndividualProject/blob/main/Images/WatchlistPage.JPG)
 
 ### In Conclusion
 
